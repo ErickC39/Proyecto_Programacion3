@@ -1,0 +1,5 @@
+{
+  "name": "Web Project",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node",
+  "postCreateCommand": "./scripts/post-create.sh"
+}
