@@ -29,20 +29,19 @@ body {
     max-width: 1200px;
     margin: 0 auto;
 }
-/*
+
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/ imagen personalizada /
+/* imagen personalizada */
 .img-small {
-    width: 300px;
+    width: 200px;
     height: auto;
 }
 .img-medium {
     width: 500px;
     height: auto;
 }
-*/
