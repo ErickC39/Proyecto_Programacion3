@@ -1,4 +1,0 @@
-{
-  "name": "MiProyecto",
-  "postStartCommand": "./sync.sh"
-}
