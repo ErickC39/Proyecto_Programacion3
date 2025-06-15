@@ -1,0 +1,75 @@
+:root {
+  --color-primary: #765d67;
+  --color-secondary: #6d3c52;
+  --color-dark1: #4b2138;
+  --color-dark2: #1b0c1a;
+  --color-dark3: #2d222f;
+  --color-light: #fadcd5;
+}
+
+body {
+  background-color: var(--color-light);
+  color: var(--color-dark3);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-light);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-light);
+}
+
+.btn-outline-primary {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+}
+
+.quick-nav {
+  background-color: var(--color-light);
+  border-top: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  font-weight: 600;
+}
+
+.quick-nav a {
+  color: var(--color-dark3);
+  font-size: 1.1rem;
+}
+
+.quick-nav a:hover {
+  color: var(--color-primary);
+}
+
+.logo-container {
+  color: var(--color-primary);
+}
