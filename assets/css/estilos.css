@@ -1,15 +1,16 @@
 :root {
-  --color-primary: #765d67;
-  --color-secondary: #6d3c52;
-  --color-dark1: #4b2138;
-  --color-dark2: #1b0c1a;
-  --color-dark3: #2d222f;
-  --color-light: #fadcd5;
+  --color-primary: #eeb844;
+  --color-secondary: #b68d2c;
+  --color-dark1: #000020;
+  --color-dark2: #172a4a;
+  --color-dark3: #2f2c79;
+  --color-light: #172a4a;
+  --color-accent: #eeb844;
 }
 
 body {
-  background-color: var(--color-light);
-  color: var(--color-dark3);
+  background-color: var(--color-dark1);
+  color: var(--color-primary);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
@@ -32,13 +33,13 @@ a:hover {
 .btn-primary {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
-  color: var(--color-light);
+  color: var(--color-dark1);
 }
 
 .btn-primary:hover {
   background-color: var(--color-secondary);
   border-color: var(--color-secondary);
-  color: var(--color-light);
+  color: var(--color-dark1);
 }
 
 .btn-outline-primary {
@@ -48,11 +49,11 @@ a:hover {
 
 .btn-outline-primary:hover {
   background-color: var(--color-primary);
-  color: var(--color-light);
+  color: var(--color-dark1);
 }
 
 .quick-nav {
-  background-color: var(--color-light);
+  background-color: var(--color-dark2);
   border-top: 2px solid var(--color-primary);
   display: flex;
   justify-content: center;
@@ -62,12 +63,12 @@ a:hover {
 }
 
 .quick-nav a {
-  color: var(--color-dark3);
+  color: var(--color-primary);
   font-size: 1.1rem;
 }
 
 .quick-nav a:hover {
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 .logo-container {
@@ -84,6 +85,6 @@ a:hover {
 .logo-subtext {
   font-size: 1rem;
   font-weight: normal;
-  color: var(--color-primary);
+  color: var(--color-secondary);
   letter-spacing: 2px;
 }

@@ -5,7 +5,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente */
+  align-items: center;
   overflow: hidden;
 }
 
@@ -68,7 +68,7 @@
 
 .logo-container:hover .plane {
   opacity: 1;
-  animation: flyAcross 1.2s linear forwards;
+  animation: flyAcross 4.0s linear forwards;
 }
 
 .logo-container:hover .plane-trail {
@@ -78,7 +78,7 @@
 
 @keyframes flyAcross {
   0% { transform: translateX(0); opacity: 1; }
-  100% { transform: translateX(300px); opacity: 0; } /* Ajusta 300px según el ancho de tu logo */
+  100% { transform: translateX(700px); opacity: 0; } 
 }
 
 @keyframes trailFade {
