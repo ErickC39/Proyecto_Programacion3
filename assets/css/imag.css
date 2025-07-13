@@ -4,8 +4,8 @@
   object-fit: cover;
   display: block;
   margin: 0 auto;
-  border-radius: 10px; /* Opcional: bordes redondeados */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* Opcional: sombra */
+  border-radius: 10px; /* bordes redondeados */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* sombra */
 }
 @media (max-width: 768px) {
   .hero-img {
@@ -20,7 +20,7 @@
 }
 
 .premium-section h2 {
-  font-size: 2.8rem;
+  font-size: 3.3rem;
   margin-bottom: 40px;
   color: #f8b822;
 }
@@ -63,6 +63,140 @@
 
 .card p {
   font-size: 0.95rem;
-  color: #555;
+  color: #555555;
   margin-top: 10px;
+}
+/* Exclusivo para destinos */
+.destinos-section {
+  padding: 60px 0;
+  background: #07073a;
+}
+
+.destinos-title {
+  font-size: 2.5rem;
+  color: #fffffd;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+.destinos-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+@media (max-width: 1100px) {
+  .destinos-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+  }
+}
+@media (max-width: 700px) {
+  .destinos-cards {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+}
+.destino-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+  overflow: hidden;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 700px; /* Ajusta este valor según el contenido */
+}
+
+.destino-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.destino-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.destino-content {
+  padding: 28px 24px 24px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.destino-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.35rem;
+  color:  #eab308;
+}
+
+.destino-content p {
+  font-size: 1rem;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.destino-content ul {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 90%;
+  color: #000000;
+  font-size: 0.98rem;
+  padding-left: 18px;
+}
+/* Boton de reserva*/
+.btn-reserva {
+  background: #eab308;
+  color: #000000;
+  border: none;
+  font-weight: bold;
+  padding: 14px 0;
+  font-size: 1.15rem;
+  border-radius: 8px;
+  width: 80%;
+  margin: 18px auto 0 auto;
+  display: block;
+  transition: background 0.2s;
+  margin-top: auto; /* Esto empuja el botón al fondo de la tarjeta */
+}
+.btn-reserva:hover {
+  background: #cfa307;
+  color: #ffffff;
+}
+
+/* Letra Beneficios  */
+.beneficios-section p {
+  padding: 10px 10px;
+  background: linear-gradient(to bottom right,#000020, #000020);
+  text-align: center;
+  color: #ffffff; 
+}
+
+/*¨Videos con Grid*/
+
+.videos-title {
+    text-align: center;
+    color: #f8b822;
+    font-size: 3.3rem;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+.videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap:25px;
+    padding:45px;
+    justify-items: center;
+}
+
+.videos iframe {
+    width:100%;
+    max-width: 700px;
+    height: 300px;
+    border:  3px solid #000020;
 }
