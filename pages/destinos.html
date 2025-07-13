@@ -7,27 +7,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/estilos.css" />
     <link rel="stylesheet" href="../assets/css/logo-animacion.css" />
+    <link rel="stylesheet" href="../assets/css/imag.css" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    </head>
-    <body>
-
+</head>
+<body>
     <!-- Encabezado -->
     <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
-        <!-- Logo izquierda -->
         <div class="logo-container">
-        <span class="logo-text">GOLD</span>
-        <span class="plane-anim">
-            <i class="fa-solid fa-plane plane"></i>
-            <span class="plane-trail"></span>
-        </span>
-        <span class="logo-subtext"> Wings</span>
+            <span class="logo-text">GOLD</span>
+            <span class="plane-anim">
+                <i class="fa-solid fa-plane plane"></i>
+                <span class="plane-trail"></span>
+            </span>
+            <span class="logo-subtext"> Wings</span>
         </div>
-
-        <!-- Botones derecha -->
         <div>
-        <button class="btn btn-outline-primary me-2">Register</button>
-        <button class="btn btn-primary">Login</button>
+            <button class="btn btn-outline-primary me-2">Register</button>
+            <button class="btn btn-primary">Login</button>
         </div>
     </header>
 
@@ -40,23 +37,149 @@
         <a href="ubicacion.html">Ubicacion</a>
     </nav>
 
-    <!-- Aquí va el contenido principal de la página de búsqueda -->
-    <main class="container mt-4">
-        <!-- Tu contenido específico aquí -->
-<<<<<<< HEAD:pages/destinos.html
-        <h1>Destinos</h1>
-=======
-        <h1>Sobre nostros</h1>
-        <p class="texto-blanco">
-    En Gold Wings, creemos que cada viaje es una nueva oportunidad para descubrir el mundo. Somos un equipo apasionado por conectar personas con sus destinos soñados, ofreciendo opciones de vuelo accesibles, seguras y confiables.
-    Nuestra plataforma está diseñada para que planifiques tus viajes de forma rápida y sencilla, con atención al cliente disponible cuando más lo necesites.
-    Ya sea un viaje de negocios, una escapada en pareja o unas vacaciones en familia, en Gol Wings estamos aquí para llevarte a donde quieras llegar. 🌍
-</p>
-
->>>>>>> 0aa380901ed57a0768f73698d2ec0ecc80ddef03:pages/sobre_nosotros.html
-        <!-- ... -->
-    </main>
-
+    <!-- Contenido principal -->
+    <section class="destinos-section">
+      <h2 class="destinos-title">Paquetes Premium</h2>
+      <div class="destinos-cards">
+        <div class="destino-card">
+          <img src="../assets/img/Kioto.jpg" alt="Japón" class="destino-img">
+          <div class="destino-content">
+            <h3>Japón <span style="font-size:0.8em; color:#172a4a;">JP</span></h3>
+            <p>Esencia del Japón Imperial – 12 días / 11 noches<br>
+            <strong>Destino:</strong> Tokio, Kioto, Osaka</p>
+            <ul>
+              <li>Vuelos ida y vuelta en clase ejecutiva</li>
+              <li>Estadía en hoteles 5 estrellas</li>
+              <li>Tren bala (Shinkansen) incluido</li>
+              <li>Experiencia gastronómica kaiseki</li>
+              <li>Ceremonia del té tradicional</li>
+              <li>Tour privado por templos de Kioto</li>
+              <li>Entrada al TeamLab Borderless y Monte Fuji</li>
+            </ul>
+           <a href="busqueda.html" class="btn btn-lg mt-3 btn-reserva">Reserva</a>
+          </div>
+        </div>
+        <div class="destino-card">
+          <img src="../assets/img/Nueva York 2.jpg" alt="Nueva York" class="destino-img">
+          <div class="destino-content">
+            <h3>Nueva York <span style="font-size:0.8em; color:#172a4a;">US</span></h3>
+            <p>Lujo Metropolitano – 6 días / 5 noches<br>
+            <strong>Destino:</strong> Nueva York, EE.UU.</p>
+            <ul>
+              <li>Vuelos en clase ejecutiva</li>
+              <li>Alojamiento en hotel 5★ en Manhattan</li>
+              <li>Cena VIP en restaurante con estrella Michelin</li>
+              <li>Pase prioritario para Empire State, Top of the Rock y Museos</li>
+              <li>Paseo en helicóptero por la ciudad</li>
+              <li>Experiencia Broadway con acceso backstage</li>
+            </ul>
+            <a href="busqueda.html" class="btn btn-lg mt-3 btn-reserva">Reserva</a>
+          </div>
+        </div>
+        <div class="destino-card">
+          <img src="../assets/img/Interlaken.jpg" alt="Suiza" class="destino-img">
+          <div class="destino-content">
+            <h3>Suiza <span style="font-size:0.8em; color:#172a4a">CH</span></h3>
+            <p>Alpes y Chocolates – 10 días / 9 noches<br>
+            <strong>Destino:</strong> Zúrich, Lucerna, Interlaken, Ginebra</p>
+            <ul>
+              <li>Vuelos premium</li>
+              <li>Tren panorámico Glacier Express</li>
+              <li>Hospedaje en hoteles boutique</li>
+              <li>Tour de fábricas de relojes y chocolate</li>
+              <li>Excursión a los Alpes (Jungfrau o Zermatt)</li>
+              <li>Cena gourmet en montaña con vista a los Alpes</li>
+            </ul>
+            <a href="busqueda.html" class="btn btn-lg mt-3 btn-reserva">Reserva</a>
+          </div>
+        </div>
+        <div class="destino-card">
+          <img src="../assets/img/Bangkok.jpg" alt="Tailandia" class="destino-img">
+          <div class="destino-content">
+            <h3>Tailandia <span style="font-size:0.8em; color:#172a4a;">TH</span></h3>
+            <p>Paraíso Dorado – 10 días / 9 noches<br>
+            <strong>Destino:</strong> Bangkok, Phuket, Phi Phi Islands</p>
+            <ul>
+              <li>Vuelos en clase ejecutiva</li>
+              <li>Alojamiento en resorts frente al mar</li>
+              <li>Masajes tailandeses diarios</li>
+              <li>Safari de elefantes ético</li>
+              <li>Cena crucero en río Chao Phraya</li>
+              <li>Tour en yate privado a Phi Phi Islands</li>
+            </ul>
+            <a href="busqueda.html" class="btn btn-lg mt-3 btn-reserva">Reserva</a>
+          </div>
+        </div>
+        <div class="destino-card">
+          <img src="../assets/img/Francia.jpg" alt="París" class="destino-img">
+          <div class="destino-content">
+            <h3>París <span style="font-size:0.8em; color:#172a4a;">FR</span></h3>
+            <p>Encanto Parisino Deluxe – 7 días / 6 noches<br>
+            <strong>Destino:</strong> París, Francia</p>
+            <ul>
+              <li>Vuelos premium</li>
+              <li>Hotel boutique cerca de la Torre Eiffel</li>
+              <li>Cena romántica en el restaurante de la Torre</li>
+              <li>Tour VIP por el Louvre y Versalles</li>
+              <li>Paseo privado en yate por el Sena</li>
+              <li>Experiencia de compras con asesor de moda</li>
+            </ul>
+            <a href="busqueda.html" class="btn btn-lg mt-3 btn-reserva">Reserva</a>
+          </div>
+        </div>
+        <div class="destino-card">
+          <img src="../assets/img/Emiratos.jpg" alt="Dubái" class="destino-img">
+          <div class="destino-content">
+            <h3>Dubái <span style="font-size:0.8em; color:#172a4a;">AE</span></h3>
+            <p>Lujo Futurista – 6 días / 5 noches<br>
+            <strong>Destino:</strong> Dubái, Emiratos Árabes Unidos</p>
+            <ul>
+              <li>Vuelos en clase business</li>
+              <li>Estancia en hotel 5★ (Burj Al Arab o Atlantis)</li>
+              <li>Safari de lujo en el desierto con cena gourmet</li>
+              <li>Entrada VIP a Burj Khalifa</li>
+              <li>Tour en yate privado por The Palm</li>
+              <li>Día completo en Dubai Mall con personal shopper</li>
+            </ul>
+            <a href="busqueda.html" class="btn btn-lg mt-3 btn-reserva">Reserva</a>
+          </div>
+        </div>
+        <div class="destino-card">
+          <img src="../assets/img/Monaco2.jpg" alt="Mónaco" class="destino-img">
+          <div class="destino-content">
+            <h3>Mónaco <span style="font-size:0.8em; color:#172a4a;">MC</span></h3>
+            <p>Royal Experience – 5 días / 4 noches<br>
+            <strong>Destino:</strong> Mónaco</p>
+            <ul>
+              <li>Vuelos premium</li>
+              <li>Alojamiento en el Hôtel de Paris Monte-Carlo</li>
+              <li>Acceso exclusivo al Casino de Monte Carlo</li>
+              <li>Tour en Ferrari por la Riviera Francesa</li>
+              <li>Cena con estrella Michelin</li>
+              <li>Entrada a eventos selectos (opera, gala o GP si está disponible)</li>
+            </ul>
+            <a href="busqueda.html" class="btn btn-lg mt-3 btn-reserva">Reserva</a>
+          </div>
+        </div>
+        <div class="destino-card">
+          <img src="../assets/img/Londres2.jpg" alt="Londres" class="destino-img">
+          <div class="destino-content">
+            <h3>Londres <span style="font-size:0.8em; color:#172a4a;">GB</span></h3>
+            <p>Londres Elegante – 7 días / 6 noches<br>
+            <strong>Destino:</strong> Londres, Reino Unido</p>
+            <ul>
+              <li>Vuelos en clase ejecutiva</li>
+              <li>Hospedaje en hotel histórico de lujo</li>
+              <li>Té de la tarde en The Ritz</li>
+              <li>Tour privado por el Palacio de Buckingham</li>
+              <li>Crucero nocturno por el Támesis</li>
+              <li>Entradas VIP para musicales del West End</li>
+            </ul>
+            <a href="busqueda.html" class="btn btn-lg mt-3 btn-reserva">Reserva</a>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Pie de página -->
     <footer class="bg-light text-center text-lg-start mt-4 border-top">
         <div class="container p-3">
