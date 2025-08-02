@@ -14,7 +14,6 @@
 
 <!-- Encabezado -->
 <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
-    <!-- Logo izquierda -->
     <div class="logo-container">
         <span class="logo-text">GOLD</span>
         <span class="plane-anim">
@@ -23,7 +22,6 @@
         </span>
         <span class="logo-subtext"> Wings</span>
     </div>
-    <!-- Botones derecha -->
     <div>
         <button class="btn btn-outline-primary me-2">Register</button>
         <button class="btn btn-primary">Login</button>
@@ -39,15 +37,15 @@
     <a href="ubicacion.html">Ubicacion</a>
 </nav>
 
-<!-- contenido principal de la página de búsqueda -->
 <main class="container mt-4">
     <div class="search-box p-4 rounded shadow mx-auto" style="max-width: 500px; background: var(--color-dark2);">
-        <!-- Botones de tipo de viaje -->
+        <!-- Tipo de viaje -->
         <div class="d-flex justify-content-center mb-3" id="trip-type-group">
             <button id="btn-ida" class="btn btn-trip-type active" type="button">Ida</button>
             <button id="btn-ida-vuelta" class="btn btn-trip-type ms-2" type="button">Ida y vuelta</button>
         </div>
-        <!-- Selección de países -->
+
+        <!-- Aeropuertos -->
         <div class="row mb-3">
             <div class="col">
                 <label for="origen" class="form-label">Aeropuerto de origen</label>
@@ -62,6 +60,7 @@
                 </select>
             </div>
         </div>
+
         <!-- Fechas -->
         <div class="row mb-3">
             <div class="col">
@@ -73,14 +72,26 @@
                 <input type="date" id="fecha-regreso" class="form-control" disabled>
             </div>
         </div>
-        <!-- Botón buscar -->
-        <div class="d-grid">
-            <button class="btn btn-primary" id="buscar-vuelo" type="button">Buscar vuelo</button>
+
+        <div class="row align-items-end mb-3">
+            <!-- Selector de pasajeros (col-4) -->
+            <div class="col-4">
+                <label for="pasajeros" class="form-label">Cantidad de pasajeros</label>
+                <div class="input-group">
+                    <button class="btn btn-outline-secondary" type="button" id="decrementar">-</button>
+                    <input type="number" id="pasajeros" class="form-control text-center" value="1" min="1" readonly>
+                    <button class="btn btn-outline-secondary" type="button" id="incrementar">+</button>
+                </div>
+            </div>
+
+            <!-- Botón buscar vuelo (col-6) -->
+            <div class="col-6 offset-2 d-grid">
+                <button class="btn btn-primary" id="buscar-vuelo" type="button">Buscar vuelo</button>
+            </div>
         </div>
-        <!-- El dashboard de vuelos ya NO va aquí -->
     </div>
 
-    <!-- Dashboard de vuelos fuera del cuadro de búsqueda, centrado y de 10 columnas -->
+    <!-- Resultados -->
     <div class="row justify-content-center mt-4">
         <div class="col-10">
             <div id="vuelos-dashboard"></div>
@@ -88,7 +99,6 @@
     </div>
 </main>
 
-<!-- Pie de página -->
 <footer class="bg-light text-center text-lg-start mt-4 border-top">
     <div class="container p-3">
         <span class="text-muted">&copy; 2025 GOLD Wings. All rights reserved.</span>
