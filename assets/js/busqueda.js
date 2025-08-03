@@ -169,9 +169,11 @@ document.addEventListener('DOMContentLoaded', function () {
                             ? `<div class="badge-mejor-precio">$ Mejor precio</div>`
                             : '';
 
-                        // Ida y vuelta
+                        // Verifica si es ida y vuelta
                         const esIdaVuelta = btnIdaVuelta.classList.contains('active') && fechaRegreso && fechaRegreso.value;
                         let regresoHTML = '';
+
+                        // Si es ida y vuelta, genera también el vuelo de regreso
                         if (esIdaVuelta) {
                             const vueloRegreso = generarVueloSimulado(vuelo.to, vuelo.from);
                             vueloRegreso.departure_time = new Date(fechaRegreso.value + 'T' + String(Math.floor(Math.random() * 24)).padStart(2, '0') + ':' + String(Math.floor(Math.random() * 60)).padStart(2, '0')).toISOString();
@@ -183,7 +185,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <hr>
                                 <div class="row align-items-center mt-3">
                                     <div class="col-md-3 text-center">
-                                        <div class="hora fw-bold">${new Date(vueloRegreso.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                                        <div class="hora fw-bold">
+                                            ${new Date(vueloRegreso.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
+                                            ${new Date(vueloRegreso.departure_time).toLocaleDateString()}
+                                        </div>
                                         <div class="iata text-muted">${vueloRegreso.from}</div>
                                     </div>
                                     <div class="col-md-4 text-center">
@@ -196,7 +201,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                         </div>
                                     </div>
                                     <div class="col-md-2 text-center">
-                                        <div class="hora fw-bold">${new Date(vueloRegreso.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                                        <div class="hora fw-bold">
+                                            ${new Date(vueloRegreso.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
+                                            ${new Date(vueloRegreso.arrival_time).toLocaleDateString()}
+                                        </div>
                                         <div class="iata text-muted">${vueloRegreso.to}</div>
                                     </div>
                                     <div class="col-md-3 text-end">
@@ -213,9 +221,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             ${mejorPrecioEtiqueta}
                             <div class="row align-items-center">
                                 <div class="col-md-3 text-center">
-                                    <div class="hora fw-bold">${new Date(vuelo.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                                    <div class="hora fw-bold">
+                                        ${new Date(vuelo.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
+                                        ${new Date(vuelo.departure_time).toLocaleDateString()}
+                                    </div>
                                     <div class="iata text-muted">${vuelo.from}</div>
                                 </div>
+
                                 <div class="col-md-4 text-center">
                                     <div class="text-primary fw-semibold">${escala}</div>
                                     <div class="duracion text-muted">${duracionMinutos} min</div>
@@ -225,10 +237,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <span class="dot"></span>
                                     </div>
                                 </div>
+
                                 <div class="col-md-2 text-center">
-                                    <div class="hora fw-bold">${new Date(vuelo.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                                    <div class="hora fw-bold">
+                                        ${new Date(vuelo.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
+                                        ${new Date(vuelo.arrival_time).toLocaleDateString()}
+                                    </div>
                                     <div class="iata text-muted">${vuelo.to}</div>
                                 </div>
+
                                 <div class="col-md-3 text-end">
                                     <div class="text-muted small">Desde</div>
                                     <div class="precio fw-bold">USD ${vuelo.precioTotal.toFixed(2)}</div>
