@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GOLD Wings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/estilos.css" />
+    <link rel="stylesheet" href="../assets/css/logo-animacion.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    </head>
+    <body>
+
+    <!-- Encabezado -->
+    <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
+        <!-- Logo izquierda -->
+        <div class="logo-container">
+        <span class="logo-text">GOLD</span>
+        <span class="plane-anim">
+            <i class="fa-solid fa-plane plane"></i>
+            <span class="plane-trail"></span>
+        </span>
+        <span class="logo-subtext"> Wings</span>
+        </div>
+  </header>
+  
+    <!-- Barra rápida de navegación -->
+    <nav class="quick-nav d-flex justify-content-center">
+        <a href="../index.html">Inicio</a>
+        <a href="destinos.html">Destinos</a>
+        <a href="busqueda.html">Busqueda de Vuelos</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="ubicacion.html">Ubicacion</a>
+    </nav>
+
+    <!-- Aquí va el contenido de ubicacion de la página de búsqueda -->
+    <main class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-lg border-0">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4" style="color: #eab308;">Iniciar Sesión</h2>
+          <form>
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="remember">
+                <label class="form-check-label" for="remember">
+                  Recuérdame
+                </label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+          </form>
+          <hr>
+          <p class="text-center mb-0">¿No tienes cuenta? <a href="registro.html" class="text-warning">Regístrate aquí</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+ <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start mt-4 border-top">
+    <div class="container p-3">
+        <span class="text-muted">&copy; 2025 GOLD Wings. All rights reserved.</span>
+    </div>
+</footer>
+<script src="../assets/js/busqueda.js"></script>
+</body>
+</html>
