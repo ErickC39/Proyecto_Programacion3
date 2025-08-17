@@ -76,7 +76,7 @@
         </div>
 
         <div class="row align-items-end mb-3">
-            <!-- Selector de pasajeros (col-4) -->
+            <!-- Selector de pasajeros -->
             <div class="col-4">
                 <label for="pasajeros" class="form-label">Cantidad de pasajeros</label>
                 <div class="input-group">
@@ -86,7 +86,7 @@
                 </div>
             </div>
 
-            <!-- Botón buscar vuelo (col-6) -->
+            <!-- Botón buscar vuelo -->
             <div class="col-6 offset-2 d-grid">
                 <button class="btn btn-primary" id="buscar-vuelo" type="button">Buscar vuelo</button>
             </div>
@@ -101,13 +101,75 @@
     </div>
 </main>
 
+<!-- 🔹 Plantilla de vuelo -->
+<template id="template-vuelo">
+  <div class="resultado-vuelo mb-3 position-relative shadow-sm p-3 rounded bg-white">
+    <!-- Etiqueta mejor precio -->
+    <div class="badge-mejor-precio d-none">💲 Mejor precio</div>
 
+    <div class="row align-items-center">
+      <div class="col-md-3 text-center">
+        <div class="hora fw-bold salida"></div>
+        <div class="iata text-muted origen"></div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="text-primary fw-semibold escala"></div>
+        <div class="duracion text-muted"></div>
+        <div class="ruta-icono">
+          <span class="dot"></span>
+          <i class="fa-solid fa-plane mx-2"></i>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <div class="hora fw-bold llegada"></div>
+        <div class="iata text-muted destino"></div>
+      </div>
+      <div class="col-md-3 text-end">
+        <div class="text-muted small">Desde</div>
+        <div class="precio fw-bold"></div>
+        <div class="detalle-precio small text-muted"></div>
+        <button class="btn btn-sm btn-success mt-2 reservar-btn">Reservar viaje</button>
+      </div>
+    </div>
+    <div class="regreso"></div>
+  </div>
+</template>
+
+<!-- 🔹 Plantilla de vuelo regreso -->
+<template id="template-vuelo-regreso">
+  <hr>
+  <div class="row align-items-center mt-3">
+    <div class="col-md-3 text-center">
+      <div class="hora fw-bold salida-regreso"></div>
+      <div class="iata text-muted origen-regreso"></div>
+    </div>
+    <div class="col-md-4 text-center">
+      <div class="text-primary fw-semibold escala-regreso"></div>
+      <div class="duracion text-muted duracion-regreso"></div>
+      <div class="ruta-icono">
+        <span class="dot"></span>
+        <i class="fa-solid fa-plane mx-2"></i>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <div class="col-md-2 text-center">
+      <div class="hora fw-bold llegada-regreso"></div>
+      <div class="iata text-muted destino-regreso"></div>
+    </div>
+    <div class="col-md-3 text-end">
+      <div class="text-muted small">Regreso</div>
+    </div>
+  </div>
+</template>
+  
  <!-- Footer -->
 <footer class="bg-light text-center text-lg-start mt-4 border-top">
     <div class="container p-3">
         <span class="text-muted">&copy; 2025 GOLD Wings. All rights reserved.</span>
     </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../assets/js/busqueda.js"></script>
 </body>
 </html>

@@ -12,7 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnIncrementar = document.getElementById('incrementar');
     const btnDecrementar = document.getElementById('decrementar');
 
-    // Fechas mínimas y lógica ida/vuelta
+    const templateVuelo = document.getElementById('template-vuelo');
+    const templateRegreso = document.getElementById('template-vuelo-regreso');
+
+    // Fechas mínimas
     if (fechaSalida) {
         const hoy = new Date();
         const yyyy = hoy.getFullYear();
@@ -45,12 +48,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Contador de pasajeros
+    // Contador pasajeros
     if (inputPasajeros && btnIncrementar && btnDecrementar) {
         btnIncrementar.addEventListener('click', () => {
             inputPasajeros.value = parseInt(inputPasajeros.value) + 1;
         });
-
         btnDecrementar.addEventListener('click', () => {
             if (parseInt(inputPasajeros.value) > 1) {
                 inputPasajeros.value = parseInt(inputPasajeros.value) - 1;
@@ -64,15 +66,11 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 const aeropuertos = data.filter(a => a.code && a.code.length === 3 && a.name && a.country);
-                aeropuertos.sort((a, b) => {
-                    const paisA = a.country.toLowerCase();
-                    const paisB = b.country.toLowerCase();
-                    if (paisA < paisB) return -1;
-                    if (paisA > paisB) return 1;
-                    return a.name.localeCompare(b.name);
-                });
+                aeropuertos.sort((a, b) => a.country.localeCompare(b.country) || a.name.localeCompare(b.name));
+
                 aeropuertos.forEach((aeropuerto, idx) => {
                     const texto = `${idx + 1}. ${aeropuerto.country} - ${aeropuerto.name} (${aeropuerto.code})`;
+
                     const option1 = document.createElement('option');
                     option1.value = aeropuerto.code;
                     option1.textContent = texto;
@@ -86,25 +84,22 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => console.error('Error al cargar aeropuertos:', error));
     }
+    if (selectOrigen && selectDestino) cargarAeropuertos();
 
-    if (selectOrigen && selectDestino) {
-        cargarAeropuertos();
-    }
-
-    // Evento de búsqueda
+    // Evento buscar
     if (btnBuscarVuelo) {
         btnBuscarVuelo.addEventListener('click', function () {
-            const origen = selectOrigen.value;
-            const destino = selectDestino.value;
-            mostrarVuelos(origen, destino);
+            mostrarVuelos(selectOrigen.value, selectDestino.value);
         });
     }
 
-    // Vuelo aleatorio simulado
+    // Generar vuelo simulado
     function generarVueloSimulado(from, to) {
         let salida = new Date();
         if (fechaSalida && fechaSalida.value) {
-            salida = new Date(fechaSalida.value + 'T' + String(Math.floor(Math.random() * 24)).padStart(2, '0') + ':' + String(Math.floor(Math.random() * 60)).padStart(2, '0'));
+            salida = new Date(fechaSalida.value + 'T' +
+                String(Math.floor(Math.random() * 24)).padStart(2, '0') + ':' +
+                String(Math.floor(Math.random() * 60)).padStart(2, '0'));
         } else {
             salida.setHours(Math.floor(Math.random() * 24), Math.floor(Math.random() * 60));
         }
@@ -114,23 +109,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const price = (Math.random() * 1400 + 100).toFixed(2);
         const layover = Math.random() < 0.5;
 
-        return {
-            from,
-            to,
-            departure_time: salida.toISOString(),
-            arrival_time: llegada.toISOString(),
-            layover,
-            price: parseFloat(price)
-        };
+        return { from, to, departure_time: salida.toISOString(), arrival_time: llegada.toISOString(), layover, price: parseFloat(price) };
     }
 
-    // Mostrar resultados
+    // Mostrar vuelos
     function mostrarVuelos(origen, destino) {
         const dashboard = document.getElementById('vuelos-dashboard');
         dashboard.innerHTML = '';
 
         if (!origen || !destino) {
-            dashboard.innerHTML = '<div class="alert alert-warning">Selecciona aeropuerto de origen y destino.</div>';
+            Swal.fire({ icon: 'warning', title: 'Faltan datos', text: 'Selecciona aeropuerto de origen y destino' });
             return;
         }
 
@@ -144,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 );
 
                 if (rutas.length === 0) {
-                    dashboard.innerHTML = '<div class="alert alert-danger">No hay vuelos disponibles</div>';
+                    Swal.fire({ icon: 'error', title: 'Sin vuelos', text: 'No hay vuelos disponibles' });
                     return;
                 }
 
@@ -165,100 +153,55 @@ document.addEventListener('DOMContentLoaded', function () {
                     vuelosSimulados.forEach((vuelo, index) => {
                         const escala = vuelo.layover ? 'Con escala' : 'Directo';
                         const duracionMinutos = Math.floor((new Date(vuelo.arrival_time) - new Date(vuelo.departure_time)) / 60000);
-                        const mejorPrecioEtiqueta = index === 0
-                            ? `<div class="badge-mejor-precio">$ Mejor precio</div>`
-                            : '';
 
-                        // Verifica si es ida y vuelta
                         const esIdaVuelta = btnIdaVuelta.classList.contains('active') && fechaRegreso && fechaRegreso.value;
-                        let regresoHTML = '';
 
-                        // Si es ida y vuelta, genera también el vuelo de regreso
-                        if (esIdaVuelta) {
-                            const vueloRegreso = generarVueloSimulado(vuelo.to, vuelo.from);
-                            vueloRegreso.departure_time = new Date(fechaRegreso.value + 'T' + String(Math.floor(Math.random() * 24)).padStart(2, '0') + ':' + String(Math.floor(Math.random() * 60)).padStart(2, '0')).toISOString();
-                            vueloRegreso.arrival_time = new Date(new Date(vueloRegreso.departure_time).getTime() + (Math.floor(Math.random() * 5) + 1) * 60 * 60 * 1000).toISOString();
-                            const duracionRegreso = Math.floor((new Date(vueloRegreso.arrival_time) - new Date(vueloRegreso.departure_time)) / 60000);
-                            const escalaRegreso = vueloRegreso.layover ? 'Con escala' : 'Directo';
+                        // Clonamos plantilla
+                        const card = templateVuelo.content.cloneNode(true);
 
-                            regresoHTML = `
-                                <hr>
-                                <div class="row align-items-center mt-3">
-                                    <div class="col-md-3 text-center">
-                                        <div class="hora fw-bold">
-                                            ${new Date(vueloRegreso.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
-                                            ${new Date(vueloRegreso.departure_time).toLocaleDateString()}
-                                        </div>
-                                        <div class="iata text-muted">${vueloRegreso.from}</div>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <div class="text-primary fw-semibold">${escalaRegreso}</div>
-                                        <div class="duracion text-muted">${duracionRegreso} min</div>
-                                        <div class="ruta-icono">
-                                            <span class="dot"></span>
-                                            <i class="fa-solid fa-plane mx-2"></i>
-                                            <span class="dot"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 text-center">
-                                        <div class="hora fw-bold">
-                                            ${new Date(vueloRegreso.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
-                                            ${new Date(vueloRegreso.arrival_time).toLocaleDateString()}
-                                        </div>
-                                        <div class="iata text-muted">${vueloRegreso.to}</div>
-                                    </div>
-                                    <div class="col-md-3 text-end">
-                                        <div class="text-muted small">Regreso</div>
-                                    </div>
-                                </div>
-                            `;
+                        // Mostrar etiqueta "Mejor precio" solo en el más barato
+                        if (index === 0) {
+                            card.querySelector('.badge-mejor-precio').classList.remove('d-none');
                         }
 
-                        const card = document.createElement('div');
-                        card.className = 'resultado-vuelo mb-3 position-relative shadow-sm p-3 rounded bg-white';
+                        card.querySelector('.salida').textContent = `${new Date(vuelo.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(vuelo.departure_time).toLocaleDateString()}`;
+                        card.querySelector('.origen').textContent = vuelo.from;
+                        card.querySelector('.escala').textContent = escala;
+                        card.querySelector('.duracion').textContent = `${duracionMinutos} min`;
+                        card.querySelector('.llegada').textContent = `${new Date(vuelo.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(vuelo.arrival_time).toLocaleDateString()}`;
+                        card.querySelector('.destino').textContent = vuelo.to;
+                        card.querySelector('.precio').textContent = `USD ${vuelo.precioTotal.toFixed(2)}`;
+                        if (cantidadPasajeros > 1) {
+                            card.querySelector('.detalle-precio').textContent = `(${vuelo.price.toFixed(2)} x ${cantidadPasajeros})`;
+                        }
 
-                        card.innerHTML = `
-                            ${mejorPrecioEtiqueta}
-                            <div class="row align-items-center">
-                                <div class="col-md-3 text-center">
-                                    <div class="hora fw-bold">
-                                        ${new Date(vuelo.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
-                                        ${new Date(vuelo.departure_time).toLocaleDateString()}
-                                    </div>
-                                    <div class="iata text-muted">${vuelo.from}</div>
-                                </div>
+                        // Si es ida y vuelta
+                        if (esIdaVuelta) {
+                            const vueloRegreso = generarVueloSimulado(vuelo.to, vuelo.from);
+                            vueloRegreso.departure_time = new Date(fechaRegreso.value + 'T' +
+                                String(Math.floor(Math.random() * 24)).padStart(2, '0') + ':' +
+                                String(Math.floor(Math.random() * 60)).padStart(2, '0')).toISOString();
+                            vueloRegreso.arrival_time = new Date(
+                                new Date(vueloRegreso.departure_time).getTime() +
+                                (Math.floor(Math.random() * 5) + 1) * 60 * 60 * 1000
+                            ).toISOString();
 
-                                <div class="col-md-4 text-center">
-                                    <div class="text-primary fw-semibold">${escala}</div>
-                                    <div class="duracion text-muted">${duracionMinutos} min</div>
-                                    <div class="ruta-icono">
-                                        <span class="dot"></span>
-                                        <i class="fa-solid fa-plane mx-2"></i>
-                                        <span class="dot"></span>
-                                    </div>
-                                </div>
+                            const regresoCard = templateRegreso.content.cloneNode(true);
+                            regresoCard.querySelector('.salida-regreso').textContent =
+                                `${new Date(vueloRegreso.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(vueloRegreso.departure_time).toLocaleDateString()}`;
+                            regresoCard.querySelector('.origen-regreso').textContent = vueloRegreso.from;
+                            regresoCard.querySelector('.escala-regreso').textContent = vueloRegreso.layover ? 'Con escala' : 'Directo';
+                            regresoCard.querySelector('.duracion-regreso').textContent =
+                                `${Math.floor((new Date(vueloRegreso.arrival_time) - new Date(vueloRegreso.departure_time)) / 60000)} min`;
+                            regresoCard.querySelector('.llegada-regreso').textContent =
+                                `${new Date(vueloRegreso.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(vueloRegreso.arrival_time).toLocaleDateString()}`;
+                            regresoCard.querySelector('.destino-regreso').textContent = vueloRegreso.to;
 
-                                <div class="col-md-2 text-center">
-                                    <div class="hora fw-bold">
-                                        ${new Date(vuelo.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
-                                        ${new Date(vuelo.arrival_time).toLocaleDateString()}
-                                    </div>
-                                    <div class="iata text-muted">${vuelo.to}</div>
-                                </div>
+                            card.querySelector('.regreso').appendChild(regresoCard);
+                        }
 
-                                <div class="col-md-3 text-end">
-                                    <div class="text-muted small">Desde</div>
-                                    <div class="precio fw-bold">USD ${vuelo.precioTotal.toFixed(2)}</div>
-                                    ${cantidadPasajeros > 1 ? `<div class="small text-muted">($${vuelo.price.toFixed(2)} x ${cantidadPasajeros})</div>` : ''}
-                                    <button class="btn btn-sm btn-success mt-2 reservar-btn">Reservar viaje</button>
-                                </div>
-                            </div>
-                            ${regresoHTML}
-                        `;
-
-                        const btnReservar = card.querySelector('.reservar-btn');
-                        btnReservar.addEventListener('click', () => {
-                            alert('✈ Viaje reservado con éxito');
+                        card.querySelector('.reservar-btn').addEventListener('click', () => {
+                            Swal.fire({ icon: 'success', title: '¡Reserva confirmada!', text: '✈ Viaje reservado con éxito' });
                         });
 
                         dashboard.appendChild(card);
@@ -266,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             })
             .catch(error => {
-                dashboard.innerHTML = '<div class="alert alert-danger">No se pudo cargar la información de vuelos.</div>';
+                Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar la información de vuelos.' });
                 console.error('Error al cargar vuelos:', error);
             });
     }
