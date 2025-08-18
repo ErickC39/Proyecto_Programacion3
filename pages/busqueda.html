@@ -101,20 +101,20 @@
     </div>
 </main>
 
-<!-- 🔹 Plantilla de vuelo -->
+<!-- Plantilla de vuelo -->
 <template id="template-vuelo">
-  <div class="resultado-vuelo mb-3 position-relative shadow-sm p-3 rounded bg-white">
+  <div class="resultado-vuelo mb-3 position-relative shadow-sm p-3 rounded">
     <!-- Etiqueta mejor precio -->
     <div class="badge-mejor-precio d-none">💲 Mejor precio</div>
 
     <div class="row align-items-center">
       <div class="col-md-3 text-center">
-        <div class="hora fw-bold salida"></div>
-        <div class="iata text-muted origen"></div>
+        <div class="hora salida"></div>
+        <div class="iata origen"></div>
       </div>
       <div class="col-md-4 text-center">
-        <div class="text-primary fw-semibold escala"></div>
-        <div class="duracion text-muted"></div>
+        <div class="escala"></div>
+        <div class="duracion"></div>
         <div class="ruta-icono">
           <span class="dot"></span>
           <i class="fa-solid fa-plane mx-2"></i>
@@ -122,13 +122,13 @@
         </div>
       </div>
       <div class="col-md-2 text-center">
-        <div class="hora fw-bold llegada"></div>
-        <div class="iata text-muted destino"></div>
+        <div class="hora llegada"></div>
+        <div class="iata destino"></div>
       </div>
       <div class="col-md-3 text-end">
-        <div class="text-muted small">Desde</div>
-        <div class="precio fw-bold"></div>
-        <div class="detalle-precio small text-muted"></div>
+        <div class="detalle-precio">Desde</div>
+        <div class="precio"></div>
+        <div class="detalle-precio"></div>
         <button class="btn btn-sm btn-success mt-2 reservar-btn">Reservar viaje</button>
       </div>
     </div>
@@ -136,17 +136,17 @@
   </div>
 </template>
 
-<!-- 🔹 Plantilla de vuelo regreso -->
+<!-- Plantilla de vuelo regreso -->
 <template id="template-vuelo-regreso">
   <hr>
   <div class="row align-items-center mt-3">
     <div class="col-md-3 text-center">
-      <div class="hora fw-bold salida-regreso"></div>
-      <div class="iata text-muted origen-regreso"></div>
+      <div class="hora salida-regreso"></div>
+      <div class="iata origen-regreso"></div>
     </div>
     <div class="col-md-4 text-center">
-      <div class="text-primary fw-semibold escala-regreso"></div>
-      <div class="duracion text-muted duracion-regreso"></div>
+      <div class="escala-regreso"></div>
+      <div class="duracion duracion-regreso"></div>
       <div class="ruta-icono">
         <span class="dot"></span>
         <i class="fa-solid fa-plane mx-2"></i>
@@ -154,11 +154,11 @@
       </div>
     </div>
     <div class="col-md-2 text-center">
-      <div class="hora fw-bold llegada-regreso"></div>
-      <div class="iata text-muted destino-regreso"></div>
+      <div class="hora llegada-regreso"></div>
+      <div class="iata destino-regreso"></div>
     </div>
     <div class="col-md-3 text-end">
-      <div class="text-muted small">Regreso</div>
+      <div class="detalle-precio">Regreso</div>
     </div>
   </div>
 </template>

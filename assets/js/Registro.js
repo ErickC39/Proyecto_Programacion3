@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       alert('¡Registro exitoso! Bienvenido a GOLD Wings.');
-      form.reset(); // Limpia el formulario
+      form.reset();
     });
   }
 });

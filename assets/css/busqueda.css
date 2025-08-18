@@ -88,3 +88,66 @@
   font-size: 0.9rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
+
+/* Tarjeta de resultado de vuelo */
+.resultado-vuelo {
+  background-color: var(--color-dark2);
+  border: 2px solid var(--color-accent);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: var(--color-primary);
+  position: relative;
+}
+
+.resultado-vuelo:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.resultado-vuelo .hora {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.resultado-vuelo .iata {
+  font-size: 0.9rem;
+  color: var(--color-secondary);
+}
+
+.resultado-vuelo .escala {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.resultado-vuelo .duracion {
+  font-size: 0.85rem;
+  color: var(--color-secondary);
+}
+
+.resultado-vuelo .precio {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.resultado-vuelo .detalle-precio {
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+}
+
+/* Badge mejor precio */
+.badge-mejor-precio {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  background: #28a745;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}

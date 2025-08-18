@@ -7,110 +7,97 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/estilos.css" />
     <link rel="stylesheet" href="../assets/css/logo-animacion.css" />
-<<<<<<< HEAD
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-</head>
-<body>
-=======
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="../assets/css/responsive.css">
-    </head>
-    <body>
+    <link rel="stylesheet" href="../assets/css/ubicacion.css" />
+    
+</head>
+<body>
 
->>>>>>> a385702da3a6cfc20ae3da20c72f26c899da5eab
-    <!-- Encabezado -->
-    <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
-        <div class="logo-container">
-            <span class="logo-text">GOLD</span>
-            <span class="plane-anim">
-                <i class="fa-solid fa-plane plane"></i>
-                <span class="plane-trail"></span>
-            </span>
-            <span class="logo-subtext"> Wings</span>
-        </div>
-<<<<<<< HEAD
-        <div>
-            <button class="btn btn-outline-primary me-2">Register</button>
-            <button class="btn btn-primary">Login</button>
-        </div>
-    </header>
+<!-- Encabezado -->
+<header class="d-flex justify-content-between align-items-center p-3 border-bottom">
+    <div class="logo-container">
+        <span class="logo-text">GOLD</span>
+        <span class="plane-anim">
+            <i class="fa-solid fa-plane plane"></i>
+            <span class="plane-trail"></span>
+        </span>
+        <span class="logo-subtext"> Wings</span>
+    </div>
 
-=======
-
-        <!-- Botones derecha -->
     <div>
       <a href="../pages/login.html" class="btn btn-primary">Iniciar Sesión</a>
       <a href="../pages/registro.html" class="btn btn-primary">Registrarse</a>
     </div>
-  </header>
-  
->>>>>>> a385702da3a6cfc20ae3da20c72f26c899da5eab
-    <!-- Barra rápida de navegación -->
-    <nav class="quick-nav d-flex justify-content-center mb-3">
-        <a href="../index.html">Inicio</a>
-        <a href="destinos.html">Destinos</a>
-        <a href="busqueda.html">Busqueda de Vuelos</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="ubicacion.html" class="active">Ubicación</a>
-    </nav>
+</header>
 
-    <!-- Contenido principal -->
-    <main class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="card shadow-lg border-0">
-                    <div class="row g-0">
-                        <!-- Mapa -->
-                        <div class="col-md-7">
-                            <div class="ratio ratio-16x9 h-100 rounded-start">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.857963024073!2d-89.2181916846617!3d13.69294099037237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6330b2e6e9e9e1%3A0x6f6e7e7e7e7e7e7e!2sSan%20Salvador%2C%20El%20Salvador!5e0!3m2!1ses!2ssv!4v1692299999999!5m2!1ses!2ssv"
-                                    style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                    title="Ubicación GOLD Wings"></iframe>
-                            </div>
+<!-- Barra rápida -->
+<nav class="quick-nav d-flex justify-content-center mb-3">
+    <a href="../index.html">Inicio</a>
+    <a href="destinos.html">Destinos</a>
+    <a href="busqueda.html">Busqueda de Vuelos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="ubicacion.html" class="active">Ubicación</a>
+</nav>
+
+<!-- Contenido -->
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-0">
+                <div class="row g-0">
+                    <!-- Mapa -->
+                    <div class="col-md-7">
+                        <div class="ratio ratio-16x9 h-100 rounded-start">
+                            <iframe
+                                id="iframe-mapa"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.3162753425084!2d-84.20880642410473!3d10.001261772884526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fbac44a3f47d%3A0xf8e9f40be57d9e4b!2sAeropuerto%20Internacional%20Juan%20Santamar%C3%ADa!5e0!3m2!1ses!2scr!4v1692299999999!5m2!1ses!2scr"
+                                style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Ubicación GOLD Wings"></iframe>
                         </div>
-                        <!-- Información de contacto -->
-                        <div class="col-md-5 bg-light d-flex align-items-center">
-                            <div class="p-4 w-100">
-                                <h2 class="mb-4 text-primary"><i class="fa-solid fa-location-dot me-2"></i>Ubicación</h2>
-                                <p class="mb-2"><strong>Dirección:</strong><br>
-                                    Calle Principal #123,<br>
-                                    Colonia Centro,<br>
-                                    San Salvador, El Salvador
-                                </p>
-                                <p class="mb-2"><strong><i class="fa-solid fa-phone me-2"></i>Teléfono:</strong><br>
-                                    +503 2222-3333
-                                </p>
-                                <p class="mb-2"><strong><i class="fa-solid fa-envelope me-2"></i>Email:</strong><br>
-                                    info@goldwings.com
-                                </p>
-                                <div class="mb-2">
-                                    <strong><i class="fa-solid fa-clock me-2"></i>Horario de Atención:</strong>
-                                    <ul class="list-unstyled mb-0 ms-3">
-                                        <li>Lunes a Viernes: 8:00 am - 6:00 pm</li>
-                                        <li>Sábado: 9:00 am - 1:00 pm</li>
-                                        <li>Domingo: Cerrado</li>
-                                    </ul>
-                                </div>
-                                <a href="https://goo.gl/maps/xxxxxx" target="_blank" class="btn btn-outline-primary mt-3 w-100">
-                                    <i class="fa-solid fa-map-location-dot me-2"></i>Ver en Google Maps
-                                </a>
+                    </div>
+
+                    <!-- Información de contacto -->
+                    <div class="col-md-5 d-flex align-items-center info-ubicacion">
+                        <div class="p-4 w-100">
+                            <h2 class="mb-4"><i class="fa-solid fa-location-dot me-2"></i>Ubicación</h2>
+                            <p><strong>Dirección:</strong><br>
+                                Cerca del Aeropuerto Internacional Juan Santamaría,<br>
+                                Alajuela, Costa Rica
+                            </p>
+                            <p><strong><i class="fa-solid fa-phone me-2"></i>Teléfono:</strong><br>
+                                +506 2222-3333
+                            </p>
+                            <p><strong><i class="fa-solid fa-envelope me-2"></i>Email:</strong><br>
+                                info@goldwings.com
+                            </p>
+                            <div>
+                                <strong><i class="fa-solid fa-clock me-2"></i>Horario de Atención:</strong>
+                                <ul class="list-unstyled mb-0 ms-3">
+                                    <li>Lunes a Viernes: 8:00 am - 6:00 pm</li>
+                                    <li>Sábado: 9:00 am - 1:00 pm</li>
+                                    <li>Domingo: Cerrado</li>
+                                </ul>
                             </div>
+                            <button id="btn-ver-maps" class="btn btn-outline-primary mt-3 w-100">
+                                <i class="fa-solid fa-map-location-dot me-2"></i>Ver en Google Maps
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    
-    <!-- Pie de página -->
-    <footer class="bg-light text-center text-lg-start mt-4 border-top">
-        <div class="container p-3">
-            <span class="text-muted">&copy; 2025 GOLD Wings. All rights reserved.</span>
-        </div>
-    </footer>
+<footer class="bg-light text-center text-lg-start mt-4 border-top">
+    <div class="container p-3">
+        <span class="text-muted">&copy; 2025 GOLD Wings. All rights reserved.</span>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../assets/js/ubicacion.js"></script>
 </body>
 </html>

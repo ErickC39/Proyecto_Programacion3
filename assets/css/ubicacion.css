@@ -1,0 +1,19 @@
+.info-ubicacion {
+  background-color: var(--color-dark2);
+  color: var(--color-primary);
+  border-left: 3px solid var(--color-accent);
+}
+
+.info-ubicacion h2 {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.info-ubicacion p,
+.info-ubicacion ul li {
+  color: var(--color-primary);
+}
+
+.info-ubicacion strong {
+  color: var(--color-secondary);
+}

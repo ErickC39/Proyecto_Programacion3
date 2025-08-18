@@ -81,6 +81,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     option2.textContent = texto;
                     selectDestino.appendChild(option2);
                 });
+
+                // autocompletar si se carga desde destinos //
+                const params = new URLSearchParams(window.location.search);
+                const destinoParam = params.get("destino");
+
+                if (destinoParam) {
+                    // Seleccionar Costa Rica omo origen
+                    const opcionCostaRica = [...selectOrigen.options].find(opt => opt.value === "SJO");
+                    if (opcionCostaRica) {
+                        selectOrigen.value = opcionCostaRica.value;
+                    }
+                    const opcionDestino = [...selectDestino.options].find(opt => opt.value === destinoParam);
+                    if (opcionDestino) {
+                        selectDestino.value = opcionDestino.value;
+                    }
+                }
             })
             .catch(error => console.error('Error al cargar aeropuertos:', error));
     }
