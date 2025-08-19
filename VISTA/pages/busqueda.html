@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="../assets/css/busqueda.css" />
     <link rel="stylesheet" href="../assets/css/responsive.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Tu JS separado -->
+    <script src="../assets/js/Dashboard.js"></script>
 </head>
 <body>
 
@@ -162,7 +166,29 @@
     </div>
   </div>
 </template>
-  
+
+    <!-- Dashboard de destinos más visitados -->
+  <section class="mt-5">
+ <h2 class="text-center">Destinos Premium</h2>
+  <div class="row">
+    <div class="col-md-6">
+     <table class="table table-striped" id="tabla-destinos">
+    <thead>
+    <tr>
+      <th>Destino</th>
+      <th>Visitas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- JS llenará aquí -->
+  </tbody>
+</table>
+    </div>
+    <div class="col-md-6">
+      <canvas id="graficoDestinos" height="200"></canvas>
+    </div>
+  </div>
+</section>
  <!-- Footer -->
 <footer class="bg-light text-center text-lg-start mt-4 border-top">
     <div class="container p-3">
