@@ -92,3 +92,47 @@ a:hover {
   color: var(--color-secondary);
   letter-spacing: 2px;
 }
+
+/* ajusta la barra de navegacion en posicion fija en la parte superior de la pantalla */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+  background: var(--color-dark1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  height: 70px;
+  padding: 0 2rem; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;  
+}
+
+/* Ajusta la barra de navegación para que quede debajo del header fijo */
+.quick-nav {
+  position: fixed;
+  top: 70px; /* Ajusta según la altura real del header */
+  left: 0;
+  width: 100%;
+  z-index: 1020;
+  background-color: var(--color-dark2);
+  margin: 0;
+  padding: 0.8rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-weight: 600;
+  border-top: none; 
+}
+
+body {
+  padding-top: 120px; /* Ajusta el padding superior para evitar que el contenido quede oculto detrás del header */
+}
+
+/* Estilo para el enlace activo en la barra de navegación */
+.quick-nav a.activo {
+  color: white !important;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.2rem;
+}

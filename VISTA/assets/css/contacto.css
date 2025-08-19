@@ -1,0 +1,15 @@
+/* Estilo para el enlace de política de privacidad */
+.privacidad-link {
+  color: var(--color-secondary);  /* usa tu color dorado secundario */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.privacidad-link:hover {
+  color: var(--color-primary); /* cambia a color principal al pasar el mouse */
+  text-decoration: underline;
+}
+
+#contactForm .form-text {
+  color: var(--color-primary);
+}
