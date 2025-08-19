@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="../assets/css/busqueda.css" />
     <link rel="stylesheet" href="../assets/css/responsive.css">
-    <!-- Chart.js CDN -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Tu JS separado -->
     <script src="../assets/js/Dashboard.js"></script>
 </head>
+
 <body>
 
 <!-- Encabezado -->
@@ -27,7 +28,7 @@
         </span>
         <span class="logo-subtext"> Wings</span>
     </div>
-       <!-- Botones derecha -->
+    <!-- Botones derecha -->
     <div>
         <a href="../pages/login.html" class="btn btn-primary">Iniciar Sesión</a>
         <a href="../pages/registro.html" class="btn btn-primary">Registrarse</a>
@@ -166,7 +167,7 @@
     </div>
   </div>
 </template>
-
+  
     <!-- Dashboard de destinos más visitados -->
   <section class="mt-5">
  <h2 class="text-center">Destinos Premium</h2>
@@ -195,7 +196,11 @@
         <span class="text-muted">&copy; 2025 GOLD Wings. All rights reserved.</span>
     </div>
 </footer>
+  
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../assets/js/busqueda.js"></script>
+<script type="module" src="../assets/js/busqueda.js"></script>
+<script src="../assets/js/nav-activo.js"></script>
+<script type="module" src="../assets/js/header.js"></script>
+
 </body>
 </html>

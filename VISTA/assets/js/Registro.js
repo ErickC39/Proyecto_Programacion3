@@ -3,8 +3,19 @@ document.addEventListener('DOMContentLoaded', function() {
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('¡Registro exitoso! Bienvenido a GOLD Wings.');
-      form.reset();
+      Swal.fire({
+        icon: 'success',
+        title: '¡Usuario registrado con éxito!',
+        text: 'Bienvenido a GOLD Wings.',
+        confirmButtonText: 'Iniciar sesión',
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          form.reset();
+          window.location.href = 'login.html';
+        }
+      });
     });
   }
 });
