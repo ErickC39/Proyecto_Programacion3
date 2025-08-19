@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="../assets/css/responsive.css">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../assets/js/Dashboard.js"></script>
+</head>
 
-  </head>
 <body>
 
 <!-- Encabezado -->
@@ -166,12 +168,35 @@
   </div>
 </template>
   
-<!-- Footer -->
+    <!-- Dashboard de destinos más visitados -->
+  <section class="mt-5">
+ <h2 class="text-center">Destinos Premium</h2>
+  <div class="row">
+    <div class="col-md-6">
+     <table class="table table-striped" id="tabla-destinos">
+    <thead>
+    <tr>
+      <th>Destino</th>
+      <th>Visitas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- JS llenará aquí -->
+  </tbody>
+</table>
+    </div>
+    <div class="col-md-6">
+      <canvas id="graficoDestinos" height="200"></canvas>
+    </div>
+  </div>
+</section>
+ <!-- Footer -->
 <footer class="bg-light text-center text-lg-start mt-4 border-top">
     <div class="container p-3">
         <span class="text-muted">&copy; 2025 GOLD Wings. All rights reserved.</span>
     </div>
 </footer>
+  
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="module" src="../assets/js/busqueda.js"></script>
 <script src="../assets/js/nav-activo.js"></script>
