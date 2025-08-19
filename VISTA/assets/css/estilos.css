@@ -92,3 +92,41 @@ a:hover {
   color: var(--color-secondary);
   letter-spacing: 2px;
 }
+
+/* Estilos personalizados para la tabla del dashboard */
+#tabla-destinos {
+  background: #0a0a2a;
+  color: #ffb53a;
+  border-radius: 12px;   /* esquinas más redondeadas */
+  overflow: hidden;
+  margin: 0 auto 40px auto; /* centrada y con espacio abajo */
+  padding: 20px;            /* espacio interno */
+  max-width: 600px;         /* más ancho para que crezca */
+  font-size: 25px;          /* texto más grande */
+
+}
+#tabla-destinos thead {
+  background: #0a0a2a;
+  color: #ffb53a;
+  font-size: 30px; 
+}
+#tabla-destinos th {
+  border: none;
+  font-weight: bold;
+  text-align: center;
+  padding: 14px 20px;       /* más espacio dentro de cada celda */
+}
+#tabla-destinos tbody tr:nth-child(even) {
+  background: #0a0a2a;
+  
+}
+#tabla-destinos tbody tr:nth-child(odd) {
+  background: #05052b;
+ 
+}
+#tabla-destinos td {
+  border: none;
+  padding: 14px 20px;       /* más espacio dentro de cada celda */
+}
+
+
