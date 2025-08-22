@@ -1,202 +1,348 @@
+/*
+ * Descripción: Estilos específicos para las páginas de Destinos e Inicio.
+ */
+
+/* --- Estilos para la imagen principal (hero) --- */
 .hero-img {
+  /* Ocupa todo el ancho del contenedor */
   width: 100%;
+  /* Altura de la imagen en relación al viewport */
   height: 50vh;
+  /* La imagen cubre todo el espacio sin distorsionarse */
   object-fit: cover;
+  /* Se comporta como un bloque */
   display: block;
+  /* Centra la imagen horizontalmente */
   margin: 0 auto;
-  border-radius: 10px; /* bordes redondeados */
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* sombra */
+  /* Bordes redondeados */
+  border-radius: 10px;
+  /* Añade una sombra para dar profundidad */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
+
+/* Media query para dispositivos móviles */
 @media (max-width: 768px) {
   .hero-img {
+    /* Reduce la altura de la imagen en pantallas pequeñas */
     height: 30vh;
   }
 }
 
+/* --- Estilos para la sección premium --- */
 .premium-section {
+  /* Espaciado interno */
   padding: 50px 20px;
-  background: linear-gradient(to bottom right,#000020, #000020);
+  /* Gradiente de fondo */
+  background: linear-gradient(to bottom right, #000020, #000020);
+  /* Centra el texto */
   text-align: center;
 }
 
+/* Título de la sección premium */
 .premium-section h2 {
+  /* Tamaño de fuente grande */
   font-size: 3.3rem;
+  /* Espacio inferior */
   margin-bottom: 40px;
+  /* Color de fuente llamativo */
   color: #f8b822;
 }
 
+/* Contenedor de las tarjetas de la sección premium */
 .cards-container {
+  /* Usa un diseño de cuadrícula */
   display: grid;
+  /* Columnas que se ajustan automáticamente, con un ancho mínimo de 250px */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* Espacio entre las tarjetas */
   gap: 30px;
+  /* Ancho máximo para el contenedor */
   max-width: 1200px;
+  /* Centra el contenedor */
   margin: 0 auto;
 }
 
+/* Estilos para las tarjetas genéricas */
 .card {
+  /* Fondo blanco */
   background-color: white;
+  /* Bordes redondeados */
   border-radius: 16px;
+  /* Oculta el contenido que se sale de la tarjeta */
   overflow: hidden;
+  /* Sombra para efecto 3D */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  /* Transición para el efecto de hover */
   transition: transform 0.3s;
 }
 
+/* Efecto al pasar el cursor sobre la tarjeta */
 .card:hover {
+  /* Mueve la tarjeta ligeramente hacia arriba */
   transform: translateY(-8px);
 }
 
+/* Imagen dentro de la tarjeta */
 .card img {
+  /* Ocupa todo el ancho */
   width: 100%;
+  /* Altura fija */
   height: 180px;
+  /* La imagen cubre el espacio sin distorsionarse */
   object-fit: cover;
 }
 
+/* Contenido dentro de la tarjeta */
 .card-content {
+  /* Espaciado interno */
   padding: 20px;
 }
 
+/* Título de la tarjeta */
 .card h3 {
+  /* Elimina los márgenes */
   margin: 0;
+  /* Tamaño de fuente */
   font-size: 1.3rem;
+  /* Color de fuente */
   color: #333;
 }
 
+/* Párrafos de la tarjeta */
 .card p {
+  /* Tamaño de fuente */
   font-size: 0.95rem;
+  /* Color de fuente */
   color: #555555;
+  /* Espacio superior */
   margin-top: 10px;
 }
-/* Exclusivo para destinos */
+
+/* --- Estilos específicos para la sección de destinos --- */
+
 .destinos-section {
-  padding: 60px 20px 100px 30px; /* arriba, derecha, abajo, izquierda */
+  /* Espaciado interno (superior, derecha, abajo, izquierda) */
+  padding: 60px 20px 100px 30px;
+  /* Color de fondo */
   background: #07073a;
 }
 
 .destinos-title {
+  /* Tamaño de fuente */
   font-size: 2.5rem;
+  /* Color del texto */
   color: #fffffd;
+  /* Centra el texto */
   text-align: center;
+  /* Espacio inferior */
   margin-bottom: 50px;
+  /* Espacio entre letras */
   letter-spacing: 1px;
 }
 
+/* Contenedor de las tarjetas de destino */
 .destinos-cards {
+  /* Usa un diseño de cuadrícula */
   display: grid;
+  /* Cuatro columnas de igual ancho */
   grid-template-columns: repeat(4, 1fr);
+  /* Espacio entre tarjetas */
   gap: 40px;
+  /* Ancho máximo */
   max-width: 1600px;
+  /* Centra el contenedor */
   margin: 0 auto;
+  /* Espaciado interno horizontal */
   padding: 0 20px;
 }
+
+/* Media queries para un diseño responsivo */
 @media (max-width: 1100px) {
   .destinos-cards {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+    /* Muestra 2 columnas en pantallas medianas */
+    grid-template-columns: repeat(2, 1fr);
   }
-}
-@media (max-width: 700px) {
-  .destinos-cards {
-    grid-template-columns: 1fr; /* 1 columna en móviles */
-  }
-}
-.destino-card {
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
-  overflow: hidden;
-  transition: transform 0.3s;
-  display: flex;
-  flex-direction: column;
-  min-height: 700px; /* Ajusta este valor según el contenido */
 }
 
+@media (max-width: 700px) {
+  .destinos-cards {
+    /* Muestra 1 columna en pantallas pequeñas */
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para las tarjetas de destino individuales */
+.destino-card {
+  /* Fondo blanco */
+  background: #ffffff;
+  /* Bordes redondeados */
+  border-radius: 18px;
+  /* Sombra */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
+  /* Oculta contenido que se desborde */
+  overflow: hidden;
+  /* Transición para el efecto de hover */
+  transition: transform 0.3s;
+  /* Usa flexbox para alinear el contenido */
+  display: flex;
+  /* Apila los elementos verticalmente */
+  flex-direction: column;
+  /* Altura mínima de la tarjeta */
+  min-height: 700px;
+}
+
+/* Efecto al pasar el cursor sobre la tarjeta de destino */
 .destino-card:hover {
+  /* Mueve la tarjeta hacia arriba y la escala ligeramente */
   transform: translateY(-10px) scale(1.02);
 }
 
+/* Imagen dentro de la tarjeta de destino */
 .destino-img {
+  /* Ocupa todo el ancho */
   width: 100%;
+  /* Altura fija */
   height: 220px;
+  /* La imagen cubre el espacio */
   object-fit: cover;
 }
 
+/* Contenido dentro de la tarjeta de destino */
 .destino-content {
+  /* Espaciado interno */
   padding: 28px 24px 24px 24px;
+  /* Centra el texto */
   text-align: center;
+  /* Usa flexbox para la alineación interna */
   display: flex;
+  /* Apila los elementos verticalmente */
   flex-direction: column;
+  /* Permite que el contenido crezca y se encoja */
   flex: 1 1 auto;
+  /* Ocupa el 100% de la altura disponible */
   height: 100%;
 }
 
+/* Título dentro del contenido de la tarjeta */
 .destino-content h3 {
+  /* Elimina el margen superior e inferior */
   margin: 0 0 8px 0;
+  /* Tamaño de fuente */
   font-size: 1.35rem;
-  color:  #eab308;
+  /* Color del texto */
+  color: #eab308;
 }
 
+/* Párrafo dentro del contenido de la tarjeta */
 .destino-content p {
+  /* Tamaño de fuente */
   font-size: 1rem;
+  /* Color del texto */
   color: #000000;
+  /* Espacio inferior */
   margin-bottom: 12px;
 }
 
+/* Lista de beneficios dentro de la tarjeta */
 .destino-content ul {
+  /* Alinea el texto a la izquierda */
   text-align: left;
+  /* Centra la lista */
   margin: 0 auto;
+  /* Ancho máximo de la lista */
   max-width: 90%;
+  /* Color del texto */
   color: #000000;
+  /* Tamaño de fuente */
   font-size: 0.98rem;
+  /* Relleno izquierdo */
   padding-left: 18px;
 }
-/* Boton de reserva*/
+
+/* --- Estilos para el botón de reserva --- */
 .btn-reserva {
+  /* Color de fondo */
   background: #eab308;
+  /* Color del texto */
   color: #000000;
+  /* Sin borde */
   border: none;
+  /* Negrita */
   font-weight: bold;
+  /* Espaciado interno */
   padding: 14px 0;
+  /* Tamaño de fuente */
   font-size: 1.15rem;
+  /* Bordes redondeados */
   border-radius: 8px;
+  /* Ancho del 80% */
   width: 80%;
+  /* Centra el botón */
   margin: 18px auto 0 auto;
+  /* Se comporta como un bloque */
   display: block;
+  /* Transición para el efecto de hover */
   transition: background 0.2s;
-  margin-top: auto; /* Esto empuja el botón al fondo de la tarjeta */
+  /* Mueve el botón al final del contenedor flexbox */
+  margin-top: auto;
 }
+
+/* Efecto hover del botón de reserva */
 .btn-reserva:hover {
+  /* Cambia el color de fondo */
   background: #cfa307;
+  /* Cambia el color del texto */
   color: #ffffff;
 }
 
-/* Letra Beneficios  */
+/* --- Estilos para la sección de beneficios --- */
 .beneficios-section p {
+  /* Espaciado interno */
   padding: 10px 10px;
-  background: linear-gradient(to bottom right,#000020, #000020);
+  /* Gradiente de fondo */
+  background: linear-gradient(to bottom right, #000020, #000020);
+  /* Centra el texto */
   text-align: center;
-  color: #ffffff; 
+  /* Color del texto */
+  color: #ffffff;
 }
 
-/*¨Videos con Grid*/
+/* --- Estilos para la sección de videos (usando Grid) --- */
 
 .videos-title {
-    text-align: center;
-    color: #f8b822;
-    font-size: 3.3rem;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+  /* Centra el texto */
+  text-align: center;
+  /* Color de fuente */
+  color: #f8b822;
+  /* Tamaño de fuente */
+  font-size: 3.3rem;
+  /* Espaciado superior e inferior */
+  margin-top: 40px;
+  margin-bottom: 10px;
+  /* Espacio entre letras */
+  letter-spacing: 1px;
 }
+
 .videos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    gap:25px;
-    padding:45px;
-    justify-items: center;
+  /* Usa un diseño de cuadrícula */
+  display: grid;
+  /* Columnas que se ajustan automáticamente, con un ancho mínimo de 330px */
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  /* Espacio entre los videos */
+  gap: 25px;
+  /* Espaciado interno */
+  padding: 45px;
+  /* Centra los videos horizontalmente */
+  justify-items: center;
 }
 
 .videos iframe {
-    width:100%;
-    max-width: 700px;
-    height: 300px;
-    border:  3px solid #000020;
+  /* Ocupa todo el ancho disponible */
+  width: 100%;
+  /* Ancho máximo */
+  max-width: 700px;
+  /* Altura fija */
+  height: 300px;
+  /* Borde sólido */
+  border: 3px solid #000020;
 }

@@ -1,153 +1,195 @@
+/*
+ * Descripción: Estilos específicos para la página de búsqueda de vuelos.
+ */
+
+/* --- Estilos para los botones de tipo de viaje (Ida / Ida y Vuelta) --- */
+
 .btn-trip-type {
+  /* Fondo del botón de un color primario */
   background: var(--color-primary);
+  /* Color del texto para contrastar */
   color: var(--color-dark1);
+  /* Borde con un color primario */
   border: 2px solid var(--color-primary);
+  /* Transición suave para los cambios de color de fondo y texto */
   transition: background 0.3s, color 0.3s;
+  /* Peso de la fuente seminegrita */
   font-weight: 600;
-  font-size: 1rem; 
-  padding: 0.375rem 0.75rem; 
+  /* Tamaño de la fuente del botón */
+  font-size: 1rem;
+  /* Espaciado interno para el botón */
+  padding: 0.375rem 0.75rem;
+  /* Borde redondeado */
   border-radius: 0.375rem;
-  min-width: 100px; 
+  /* Ancho mínimo para que los botones tengan un tamaño consistente */
+  min-width: 100px;
 }
+
+/* Estilos para el estado activo y con foco (cuando está seleccionado) */
 .btn-trip-type.active,
 .btn-trip-type:focus {
+  /* Fondo del botón en un color oscuro */
   background: var(--color-dark3);
+  /* Color del texto en blanco */
   color: #fff;
+  /* Color del borde en un tono oscuro */
   border-color: var(--color-dark3);
 }
 
-/* Estilos para selector de pasajeros */
+/* --- Estilos para el selector de pasajeros --- */
+
 .input-group {
+  /* Ancho máximo del grupo de entrada para evitar que sea demasiado grande */
   max-width: 200px;
+  /* Centra el grupo de entrada horizontalmente */
   margin: 0 auto;
 }
 
 #pasajeros {
+  /* Ancho fijo para el campo de entrada de pasajeros */
   width: 60px;
 }
 
+/* --- Estilos para la insignia de "mejor precio" y otros elementos --- */
+
+/* Estilos genéricos para la insignia de éxito */
 .badge.bg-success {
+  /* Reduce el tamaño de la fuente */
   font-size: 0.8rem;
+  /* Ajusta el espaciado interno */
   padding: 0.35em 0.6em;
+  /* Alinea la insignia verticalmente con otros elementos */
   vertical-align: middle;
 }
 
+/* --- Estilos para la tarjeta de resultado de vuelo --- */
+
+/* Estilos básicos de la tarjeta de resultado de vuelo */
 .resultado-vuelo {
-  background: #fff;
-  border: 1px solid #dee2e6;
+  /* Fondo en un color oscuro secundario */
+  background-color: var(--color-dark2);
+  /* Borde con un color de acento */
+  border: 2px solid var(--color-accent);
+  /* Borde redondeado */
   border-radius: 12px;
+  /* Espaciado interno */
   padding: 1rem;
+  /* Margen inferior para separar las tarjetas */
+  margin-bottom: 1rem;
+  /* Transiciones para efectos de hover */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Color del texto para la tarjeta */
+  color: var(--color-primary);
+  /* Posicionamiento relativo para los elementos internos */
   position: relative;
 }
 
-.badge-mejor-precio {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background-color: #28a745;
-  color: white;
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 0 0.5rem 0.5rem 0;
-  font-weight: bold;
-  z-index: 10;
+/* Efecto al pasar el cursor sobre la tarjeta */
+.resultado-vuelo:hover {
+  /* Aumenta ligeramente el tamaño de la tarjeta */
+  transform: scale(1.02);
+  /* Añade una sombra para dar profundidad */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
+/* Estilos para las horas de salida y llegada */
+.resultado-vuelo .hora {
+  /* Aumenta el tamaño de la fuente */
+  font-size: 1.1rem;
+  /* Negrita */
+  font-weight: bold;
+  /* Color del texto primario */
+  color: var(--color-primary);
+}
+
+/* Estilos para los códigos IATA del aeropuerto */
+.resultado-vuelo .iata {
+  /* Tamaño de fuente más pequeño */
+  font-size: 0.9rem;
+  /* Color del texto secundario */
+  color: var(--color-secondary);
+}
+
+/* Estilos para el indicador de escala */
+.resultado-vuelo .escala {
+  /* Peso de la fuente seminegrita */
+  font-weight: 600;
+  /* Color del texto primario */
+  color: var(--color-primary);
+}
+
+/* Estilos para la duración del vuelo */
+.resultado-vuelo .duracion {
+  /* Tamaño de fuente más pequeño */
+  font-size: 0.85rem;
+  /* Color del texto secundario */
+  color: var(--color-secondary);
+}
+
+/* Estilos para el precio */
+.resultado-vuelo .precio {
+  /* Tamaño de fuente más grande */
+  font-size: 1.2rem;
+  /* Negrita */
+  font-weight: bold;
+  /* Color del texto primario */
+  color: var(--color-primary);
+}
+
+/* Estilos para el texto de "Desde" y "Regreso" */
+.resultado-vuelo .detalle-precio {
+  /* Tamaño de fuente pequeño */
+  font-size: 0.8rem;
+  /* Color del texto secundario */
+  color: var(--color-secondary);
+}
+
+/* --- Estilos de los iconos de ruta y la insignia de mejor precio --- */
+
+/* Contenedor para el icono del avión y los puntos */
 .ruta-icono {
+  /* Usa flexbox para alinear los elementos */
   display: flex;
+  /* Centra horizontalmente */
   justify-content: center;
+  /* Centra verticalmente */
   align-items: center;
+  /* Espaciado vertical */
   margin: 6px 0;
 }
 
+/* Estilos para los puntos de la ruta */
 .ruta-icono .dot {
+  /* Tamaño de los puntos */
   width: 6px;
   height: 6px;
+  /* Color de fondo */
   background-color: #007bff;
+  /* Forma circular */
   border-radius: 50%;
 }
 
-.precio {
-  font-size: 1.25rem;
-  color: #000;
-}
-
-.btn-success {
-  font-size: 0.85rem;
-}
-
+/* Insignia de "Mejor precio" */
 .badge-mejor-precio {
+  /* Posicionamiento absoluto */
   position: absolute;
-  top: -10px;
-  left: -10px;
-  background: #28a745;
-  color: #fff;
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-/* Tarjeta de resultado de vuelo */
-.resultado-vuelo {
-  background-color: var(--color-dark2);
-  border: 2px solid var(--color-accent);
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  color: var(--color-primary);
-  position: relative;
-}
-
-.resultado-vuelo:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-
-.resultado-vuelo .hora {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: var(--color-primary);
-}
-
-.resultado-vuelo .iata {
-  font-size: 0.9rem;
-  color: var(--color-secondary);
-}
-
-.resultado-vuelo .escala {
-  font-weight: 600;
-  color: var(--color-primary);
-}
-
-.resultado-vuelo .duracion {
-  font-size: 0.85rem;
-  color: var(--color-secondary);
-}
-
-.resultado-vuelo .precio {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--color-primary);
-}
-
-.resultado-vuelo .detalle-precio {
-  font-size: 0.8rem;
-  color: var(--color-secondary);
-}
-
-/* Badge mejor precio */
-.badge-mejor-precio {
-  position: absolute;
+  /* Posición en la esquina superior izquierda */
   top: -12px;
   left: -12px;
+  /* Color de fondo verde */
   background: #28a745;
+  /* Color del texto blanco */
   color: #fff;
+  /* Negrita */
   font-weight: bold;
+  /* Espaciado interno */
   padding: 5px 12px;
+  /* Borde redondeado */
   border-radius: 12px;
+  /* Tamaño de la fuente */
   font-size: 0.9rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  /* Sombra para efecto 3D */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  /* Asegura que el badge esté encima de otros elementos */
+  z-index: 10;
 }

@@ -1,134 +1,178 @@
-/* Móviles pequeños (hasta 480px) */
+/*
+ * Descripción: Estilos para adaptar el diseño a diferentes tamaños de pantalla y dispositivos.
+ */
+
+/* --- Móviles pequeños (hasta 480px) --- */
 @media screen and (max-width: 480px) {
   .contenedor {
+    /* Reduce el padding para pantallas muy estrechas */
     padding: 0 0.5rem;
   }
 
   .btn {
+    /* Hace que los botones ocupen todo el ancho disponible */
     width: 100%;
   }
 }
 
-/* Móviles medianos (481px a 767px) */
+/* --- Móviles medianos (de 481px a 767px) --- */
 @media screen and (min-width: 481px) and (max-width: 767px) {
   .row {
+    /* Cambia la dirección de los elementos de una fila a una columna */
     flex-direction: column;
   }
 }
 
-/* Tablets (768px a 1024px) */
+/* --- Tablets (de 768px a 1024px) --- */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .col-md {
+    /* Hace que las columnas ocupen la mitad del espacio disponible */
     flex: 1 1 50%;
   }
 }
 
-/* Laptops y escritorios pequeños (1025px a 1279px) */
+/* --- Laptops y escritorios pequeños (de 1025px a 1279px) --- */
 @media screen and (min-width: 1025px) and (max-width: 1279px) {
   .col-lg {
+    /* Hace que las columnas ocupen un tercio del espacio disponible */
     flex: 1 1 33.33%;
   }
 }
 
-/* Escritorios grandes (1280px en adelante) */
+/* --- Escritorios grandes (1280px en adelante) --- */
 @media screen and (min-width: 1280px) {
   .contenedor {
+    /* Define un ancho máximo para el contenedor principal */
     max-width: 1200px;
   }
 }
 
-/* Orientación: vertical */
+/* --- Orientación del dispositivo --- */
+
+/* Estilos aplicados cuando la orientación es vertical (portrait) */
 @media screen and (orientation: portrait) {
   body::after {
-    content: '';
-    display: none; /* puedes usarlo como indicador si deseas */
-  }
-}
-
-/* Orientación: horizontal */
-@media screen and (orientation: landscape) {
-  body::after {
+    /* Este es un pseudo-elemento de ejemplo, no visible por defecto */
     content: '';
     display: none;
   }
 }
 
-/* Alta resolución (Retina, 4K) */
+/* Estilos aplicados cuando la orientación es horizontal (landscape) */
+@media screen and (orientation: landscape) {
+  body::after {
+    /* Este es un pseudo-elemento de ejemplo, no visible por defecto */
+    content: '';
+    display: none;
+  }
+}
+
+/* --- Alta resolución (Retina, 4K) --- */
 @media screen and (-webkit-min-device-pixel-ratio: 2),
        screen and (min-resolution: 192dpi) {
   body {
+    /* Mejora la representación de la fuente para pantallas de alta densidad */
     -webkit-font-smoothing: antialiased;
   }
 }
 
-/* Preferencia de movimiento reducido */
+/* --- Preferencia de movimiento reducido --- */
 @media (prefers-reduced-motion: reduce) {
   * {
+    /* Desactiva todas las transiciones y animaciones para usuarios con esta preferencia */
     transition: none !important;
     animation: none !important;
   }
 }
 
-/* Barra de navegación responsiva */
+/* --- Barra de navegación responsiva --- */
 .quick-nav {
-  display: flex;
+  /* Permite que los elementos se envuelvan en la siguiente línea si no hay espacio */
   flex-wrap: wrap;
+  /* Centra los elementos horizontalmente */
   justify-content: center;
 }
 
+/* Media query para la barra de navegación en pantallas de hasta 768px */
 @media screen and (max-width: 768px) {
   .quick-nav {
+    /* Apila los elementos en una columna */
     flex-direction: column;
+    /* Centra los elementos de la columna */
     align-items: center;
   }
 
   .quick-nav a {
+    /* Hace que cada enlace ocupe todo el ancho */
     width: 100%;
+    /* Centra el texto de cada enlace */
     text-align: center;
   }
 }
 
-/* videos responsivos*/
+/* --- Videos responsivos --- */
 
+/* Contenedor para mantener la relación de aspecto del video */
 .responsive-video {
+  /* Permite el posicionamiento de elementos hijos */
   position: relative;
+  /* Ocupa todo el ancho */
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  /* Crea un espacio vertical para el video con una relación de aspecto 16:9 */
+  padding-bottom: 56.25%;
+  /* Altura inicial de 0 */
   height: 0;
+  /* Oculta cualquier contenido que se desborde */
   overflow: hidden;
 }
 
+/* El iframe dentro del contenedor de video */
 .responsive-video iframe {
+  /* Posicionamiento absoluto para cubrir el contenedor padre */
   position: absolute;
+  /* Posiciona en la esquina superior izquierda */
   top: 0;
   left: 0;
+  /* Ocupa el 100% del ancho y la altura del contenedor */
   width: 100%;
   height: 100%;
+  /* Elimina el borde del iframe */
   border: 0;
 }
 
-/* Ajustes de navegación en móviles (optimización) */
+/* --- Ajustes de navegación en móviles (optimización) --- */
 @media screen and (max-width: 576px) {
   header {
-    height: 55px;            /* más bajo en móviles */
+    /* Reduce la altura del encabezado */
+    height: 55px;
+    /* Reduce el padding horizontal */
     padding: 0 0.5rem;
   }
 
   .quick-nav {
-    top: 55px;               /* ajusta a la nueva altura del header */
-    flex-direction: column;  /* links en columna */
-    gap: 0.4rem;             /* menos espacio entre enlaces */
+    /* Ajusta la posición para que quede debajo del nuevo encabezado */
+    top: 55px;
+    /* Apila los enlaces en una columna */
+    flex-direction: column;
+    /* Reduce el espacio entre los enlaces */
+    gap: 0.4rem;
+    /* Reduce el padding de la barra de navegación */
     padding: 0.4rem 0;
   }
 
   .quick-nav a {
-    font-size: 0.85rem;       /* enlaces más pequeños */
+    /* Reduce el tamaño de la fuente de los enlaces */
+    font-size: 0.85rem;
+    /* Reduce el padding vertical de los enlaces */
     padding: 0.3rem 0;
   }
 
   header .btn {
+    /* Reduce el tamaño de la fuente de los botones */
     font-size: 0.75rem;
+    /* Reduce el padding de los botones */
     padding: 0.25rem 0.6rem;
+    /* Reduce el margen izquierdo de los botones */
     margin-left: 0.3rem;
   }
 }

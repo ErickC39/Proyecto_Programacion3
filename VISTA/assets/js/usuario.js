@@ -15,6 +15,18 @@ function fmtFechaHora(str){
   return `${h} - ${f}`;
 }
 
+// mostrar siempre en hora local del dispositivo
+function fmtFechaLocal(str) {
+  const dt = new Date(str);
+  return dt.toLocaleString("es-CR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+
 /* -------- Estado global simple -------- */
 let mapaAeropuertos = {}; // IATA -> País
 
@@ -110,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <p><strong>Llegada:</strong> ${fmtFechaHora(r.fechaLlegada)}</p>
         <p><strong>Pasajeros:</strong> ${r.pasajeros}</p>
         <p><strong>Precio:</strong> USD ${Number(r.precio || 0).toFixed(2)}</p>
-        <p class="text-muted"><em>Reservado el ${fmtFechaHora(r.fechaReserva)}</em></p>
+        <p class="text-muted"><em>Reservado el ${fmtFechaLocal(r.fechaReserva)}</em></p>
       `;
       reservasContainer.appendChild(card);
     });

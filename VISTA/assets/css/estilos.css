@@ -1,174 +1,264 @@
+/*
+ * Descripción: Estilos globales y de componentes principales de la página.
+ */
+
+/* --- Variables de colores --- */
 :root {
+  /* Color principal, un tono dorado */
   --color-primary: #eeb844;
+  /* Color secundario, un tono más oscuro de dorado */
   --color-secondary: #b68d2c;
+  /* Color oscuro principal, casi negro */
   --color-dark1: #000020;
+  /* Un tono azul oscuro */
   --color-dark2: #172a4a;
+  /* Un tono morado oscuro */
   --color-dark3: #2f2c79;
+  /* Color claro (aunque aquí está definido como un tono oscuro, podría ser un error tipográfico) */
   --color-light: #172a4a;
+  /* Color de acento, igual al color primario */
   --color-accent: #eeb844;
 }
 
+/* --- Estilos del cuerpo de la página (body) --- */
 body {
+  /* Color de fondo principal */
   background-color: var(--color-dark1);
+  /* Color del texto principal */
   color: var(--color-primary);
+  /* Familia de fuentes */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Elimina el margen por defecto del navegador */
   margin: 0;
+  /* Elimina el padding por defecto del navegador */
   padding: 0;
+  /* Un padding superior que será ajustado por JavaScript para evitar que el contenido se oculte bajo el encabezado fijo */
+  padding-top: 120px;
 }
 
+/* --- Estilos para encabezados (h1 a h6) --- */
 h1, h2, h3, h4, h5, h6 {
+  /* Establece el color de los encabezados al color primario */
   color: var(--color-primary);
 }
 
+/* --- Estilo de texto para elementos con la clase .texto-blanco --- */
 .texto-blanco {
+  /* Cambia el color del texto a blanco */
   color: white;
+  /* Centra el texto */
   text-align: center;
 }
+
+/* --- Estilos para enlaces (<a>) --- */
 a {
+  /* Color del enlace */
   color: var(--color-primary);
+  /* Elimina el subrayado por defecto */
   text-decoration: none;
+  /* Transición suave para el cambio de color */
   transition: color 0.3s ease;
 }
 
+/* Efecto al pasar el cursor sobre un enlace */
 a:hover {
+  /* Cambia el color del enlace al color secundario */
   color: var(--color-secondary);
 }
 
+/* --- Estilos para botones de Bootstrap con colores personalizados --- */
+
+/* Botones principales */
 .btn-primary {
+  /* Fondo del botón */
   background-color: var(--color-primary);
+  /* Borde del botón */
   border-color: var(--color-primary);
+  /* Color del texto */
   color: var(--color-dark1);
 }
 
+/* Efecto hover para botones principales */
 .btn-primary:hover {
+  /* Cambia el color de fondo */
   background-color: var(--color-secondary);
+  /* Cambia el color del borde */
   border-color: var(--color-secondary);
+  /* Mantiene el color del texto */
   color: var(--color-dark1);
 }
 
+/* Botones con contorno */
 .btn-outline-primary {
+  /* Color del texto */
   color: var(--color-primary);
+  /* Color del borde */
   border-color: var(--color-primary);
 }
 
+/* Efecto hover para botones con contorno */
 .btn-outline-primary:hover {
+  /* Cambia el color de fondo */
   background-color: var(--color-primary);
+  /* Cambia el color del texto */
   color: var(--color-dark1);
 }
 
-.quick-nav {
-  background-color: var(--color-dark2);
-  border-top: 2px solid var(--color-primary);
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1rem 0;
-  font-weight: 600;
-}
+/* --- Estilos para el encabezado y la barra de navegación fija --- */
 
-.quick-nav a {
-  color: var(--color-primary);
-  font-size: 1.1rem;
-}
-
-.quick-nav a:hover {
-  color: var(--color-secondary);
-}
-
-.logo-container {
-  color: var(--color-primary);
-}
-
-.logo-text {
-  font-weight: bold;
-  font-size: 2.0rem;
-  line-height: 1.1;
-  display: inline-block;
-}
-
-.logo-subtext {
-  font-size: 1rem;
-  font-weight: normal;
-  color: var(--color-secondary);
-  letter-spacing: 2px;
-}
-
-/* ajusta la barra de navegacion en posicion fija en la parte superior de la pantalla */
 header {
+  /* Posicionamiento fijo para que el encabezado permanezca visible al hacer scroll */
   position: fixed;
+  /* Fija el encabezado en la parte superior */
   top: 0;
+  /* Fija el encabezado a la izquierda */
   left: 0;
+  /* Ocupa todo el ancho de la ventana */
   width: 100%;
+  /* Asegura que el encabezado se superponga a otros elementos */
   z-index: 1030;
+  /* Color de fondo */
   background: var(--color-dark1);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  /* Sombra sutil para dar un efecto de elevación */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  /* Altura fija del encabezado */
   height: 70px;
-  padding: 0 2rem; 
+  /* Espaciado interno horizontal */
+  padding: 0 2rem;
+  /* Usa flexbox para alinear elementos internos */
   display: flex;
-  justify-content: space-between; 
-  align-items: center;  
+  /* Distribuye el espacio entre los elementos */
+  justify-content: space-between;
+  /* Alinea los elementos verticalmente al centro */
+  align-items: center;
 }
 
-/* Ajusta la barra de navegación para que quede debajo del header fijo */
+/* Barra de navegación rápida */
 .quick-nav {
+  /* Posicionamiento fijo debajo del encabezado */
   position: fixed;
-  top: 70px; /* Ajusta según la altura real del header */
+  /* Se ubica a 70px de la parte superior, ajustándose a la altura del header */
+  top: 70px;
+  /* Fija la barra a la izquierda */
   left: 0;
+  /* Ocupa todo el ancho */
   width: 100%;
+  /* Asegura que la barra esté por encima del contenido principal, pero debajo del header */
   z-index: 1020;
+  /* Color de fondo */
   background-color: var(--color-dark2);
+  /* Elimina el margen */
   margin: 0;
+  /* Espaciado interno */
   padding: 0.8rem 0;
+  /* Usa flexbox para la distribución de enlaces */
   display: flex;
+  /* Centra los enlaces horizontalmente */
   justify-content: center;
+  /* Espacio entre los enlaces */
   gap: 2rem;
+  /* Peso de la fuente */
   font-weight: 600;
-  border-top: none; 
-}
-
-body {
-  padding-top: 120px; /* Ajusta el padding superior para evitar que el contenido quede oculto detrás del header */
+  /* Elimina el borde superior que se había definido en un estilo anterior */
+  border-top: none;
 }
 
 /* Estilo para el enlace activo en la barra de navegación */
 .quick-nav a.activo {
+  /* Cambia el color del enlace a blanco, forzando la sobreescritura con !important */
   color: white !important;
+  /* Añade una línea en la parte inferior para resaltarlo */
   border-bottom: 2px solid var(--color-primary);
+  /* Espacio entre el texto y la línea inferior */
   padding-bottom: 0.2rem;
 }
 
-/* Estilos personalizados para la tabla del dashboard */
-#tabla-destinos {
-  background: #0a0a2a;
-  color: #ffb53a;
-  border-radius: 12px;   /* esquinas más redondeadas */
-  overflow: hidden;
-  margin: 0 auto 40px auto; /* centrada y con espacio abajo */
-  padding: 20px;            /* espacio interno */
-  max-width: 600px;         /* más ancho para que crezca */
-  font-size: 25px;          /* texto más grande */
+/* --- Estilos para el logo --- */
+.logo-container {
+  /* Color del texto del logo */
+  color: var(--color-primary);
+}
 
-}
-#tabla-destinos thead {
-  background: #0a0a2a;
-  color: #ffb53a;
-  font-size: 30px; 
-}
-#tabla-destinos th {
-  border: none;
+.logo-text {
+  /* Negrita */
   font-weight: bold;
-  text-align: center;
-  padding: 14px 20px;       /* más espacio dentro de cada celda */
+  /* Tamaño de fuente más grande */
+  font-size: 2.0rem;
+  /* Ajusta la altura de línea */
+  line-height: 1.1;
+  /* Mantiene el elemento en línea, pero con propiedades de bloque */
+  display: inline-block;
 }
-#tabla-destinos tbody tr:nth-child(even) {
+
+.logo-subtext {
+  /* Tamaño de fuente más pequeño */
+  font-size: 1rem;
+  /* Sin negrita */
+  font-weight: normal;
+  /* Color secundario */
+  color: var(--color-secondary);
+  /* Espaciado entre letras */
+  letter-spacing: 2px;
+}
+
+/* --- Estilos para la tabla del dashboard --- */
+#tabla-destinos {
+  /* Fondo oscuro */
   background: #0a0a2a;
-  
+  /* Color del texto */
+  color: #ffb53a;
+  /* Borde redondeado */
+  border-radius: 12px;
+  /* Oculta cualquier contenido que se salga del borde redondeado */
+  overflow: hidden;
+  /* Centra la tabla y añade un margen inferior */
+  margin: 0 auto 40px auto;
+  /* Espacio interno */
+  padding: 20px;
+  /* Ancho máximo de la tabla */
+  max-width: 600px;
+  /* Tamaño de fuente del texto de la tabla */
+  font-size: 25px;
 }
-#tabla-destinos tbody tr:nth-child(odd) {
-  background: #05052b;
- 
+
+/* Estilos para el encabezado de la tabla */
+#tabla-destinos thead {
+  /* Color de fondo */
+  background: #0a0a2a;
+  /* Color del texto */
+  color: #ffb53a;
+  /* Tamaño de fuente más grande para los títulos de columna */
+  font-size: 30px;
 }
-#tabla-destinos td {
+
+/* Estilos para las celdas de encabezado (<th>) */
+#tabla-destinos th {
+  /* Elimina el borde de la celda */
   border: none;
-  padding: 14px 20px;       /* más espacio dentro de cada celda */
+  /* Negrita */
+  font-weight: bold;
+  /* Centra el texto */
+  text-align: center;
+  /* Espaciado interno */
+  padding: 14px 20px;
+}
+
+/* Estilos para filas pares en el cuerpo de la tabla */
+#tabla-destinos tbody tr:nth-child(even) {
+  /* Color de fondo para filas pares */
+  background: #0a0a2a;
+}
+
+/* Estilos para filas impares en el cuerpo de la tabla */
+#tabla-destinos tbody tr:nth-child(odd) {
+  /* Color de fondo para filas impares */
+  background: #05052b;
+}
+
+/* Estilos para las celdas de datos (<td>) */
+#tabla-destinos td {
+  /* Elimina el borde de la celda */
+  border: none;
+  /* Espaciado interno */
+  padding: 14px 20px;
 }

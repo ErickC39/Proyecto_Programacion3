@@ -1,27 +1,36 @@
+// Espera a que el contenido del documento HTML se haya cargado completamente.
 document.addEventListener("DOMContentLoaded", function () {
+    // Obtiene una referencia al formulario de contacto y al botón de política.
     const form = document.getElementById("contactForm");
     const politicaBtn = document.getElementById("politicaBtn");
 
-    // Validación del formulario
+    // --- Validación del formulario ---
+
+    // Añade un "escuchador" de eventos para cuando el formulario es enviado.
     form.addEventListener("submit", function (e) {
+        // Evita el comportamiento por defecto del formulario (recargar la página).
         e.preventDefault();
 
+        // Obtiene los valores de los campos de entrada y elimina los espacios en blanco al inicio y final.
         const nombre = document.getElementById("nombre").value.trim();
         const correo = document.getElementById("correo").value.trim();
         const motivo = document.getElementById("motivo").value.trim();
         const mensaje = document.getElementById("mensaje").value.trim();
 
+        // Comprueba si alguno de los campos obligatorios está vacío.
         if (!nombre || !correo || !motivo || !mensaje) {
+            // Muestra una alerta de error si hay campos vacíos.
             Swal.fire({
                 icon: "error",
                 title: "Campos vacíos",
                 text: "Por favor, completa todos los campos obligatorios.",
                 confirmButtonColor: "var(--color-secondary)"
             });
+            // Detiene la ejecución de la función.
             return;
         }
 
-        // Mensaje de éxito
+        // Muestra una alerta de éxito si todos los campos están llenos.
         Swal.fire({
             icon: "success",
             title: "¡Enviado!",
@@ -29,13 +38,18 @@ document.addEventListener("DOMContentLoaded", function () {
             confirmButtonColor: "var(--color-primary)"
         });
 
+        // Reinicia el formulario, borrando todos los campos.
         form.reset();
     });
 
-    // Popup de política de privacidad
+    // --- Popup de política de privacidad ---
+
+    // Añade un "escuchador" de eventos para cuando se hace clic en el botón de política.
     politicaBtn.addEventListener("click", function () {
+        // Muestra una ventana emergente (modal) con la política de privacidad.
         Swal.fire({
             title: "Política de Privacidad",
+            // Inserta el contenido HTML de la política de privacidad.
             html: `
                 <p><strong>Política de Privacidad – Proyecto GOLD Wings</strong></p>
                 <p>Este sitio web y su contenido forman parte de un proyecto académico desarrollado con fines <strong>exclusivamente educativos</strong> dentro del curso <strong>Programación 3</strong> de la <strong>Universidad Tecnológica Costarricense (UTC)</strong>.</p>
