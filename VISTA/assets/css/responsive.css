@@ -106,3 +106,29 @@
   height: 100%;
   border: 0;
 }
+
+/* Ajustes de navegación en móviles (optimización) */
+@media screen and (max-width: 576px) {
+  header {
+    height: 55px;            /* más bajo en móviles */
+    padding: 0 0.5rem;
+  }
+
+  .quick-nav {
+    top: 55px;               /* ajusta a la nueva altura del header */
+    flex-direction: column;  /* links en columna */
+    gap: 0.4rem;             /* menos espacio entre enlaces */
+    padding: 0.4rem 0;
+  }
+
+  .quick-nav a {
+    font-size: 0.85rem;       /* enlaces más pequeños */
+    padding: 0.3rem 0;
+  }
+
+  header .btn {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    margin-left: 0.3rem;
+  }
+}

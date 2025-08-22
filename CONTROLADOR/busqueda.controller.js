@@ -1,187 +1,275 @@
-import BusquedaModel from '../MODELO/busqueda.model.js';
+/* -------- Importaciones -------- */
+import { loginController } from "./loginController.js";
+import { ReservaController } from "./reserva.controller.js";
+import BusquedaModel from "../MODELO/busqueda.model.js";
 
-document.addEventListener('DOMContentLoaded', async function () {
-    const btnIda = document.getElementById('btn-ida');
-    const btnIdaVuelta = document.getElementById('btn-ida-vuelta');
-    const fechaRegreso = document.getElementById('fecha-regreso');
-    const fechaSalida = document.getElementById('fecha-salida');
+/* -------- Utilidades fecha/hora -------- */
+function generarHoraAleatoria() {
+  const hora = Math.floor(Math.random() * (22 - 5)) + 5; // entre 5 y 21
+  const minuto = Math.floor(Math.random() * 60);
+  return { hora, minuto };
+}
 
-    const selectOrigen = document.getElementById('origen');
-    const selectDestino = document.getElementById('destino');
-    const btnBuscarVuelo = document.getElementById('buscar-vuelo');
+function calcularLlegada(salida, conEscala = false) {
+  const duracionHoras = conEscala
+    ? Math.floor(Math.random() * 6) + 4
+    : Math.floor(Math.random() * 3) + 1;
+  const duracionMin = Math.floor(Math.random() * 60);
 
-    const inputPasajeros = document.getElementById('pasajeros');
-    const btnIncrementar = document.getElementById('incrementar');
-    const btnDecrementar = document.getElementById('decrementar');
+  const llegada = new Date(salida.getTime());
+  llegada.setHours(llegada.getHours() + duracionHoras);
+  llegada.setMinutes(llegada.getMinutes() + duracionMin);
 
-    const templateVuelo = document.getElementById('template-vuelo');
-    const templateRegreso = document.getElementById('template-vuelo-regreso');
-    const dashboard = document.getElementById('vuelos-dashboard');
+  return { llegada, duracion: `${duracionHoras}h ${duracionMin}m` };
+}
 
-    // Fechas mínimas
-    if (fechaSalida) {
-        const hoy = new Date();
-        const yyyy = hoy.getFullYear();
-        const mm = String(hoy.getMonth() + 1).padStart(2, '0');
-        const dd = String(hoy.getDate()).padStart(2, '0');
-        fechaSalida.setAttribute('min', `${yyyy}-${mm}-${dd}`);
+function fmtFechaHora(str) {
+  const dt = new Date(str);
+  const f = dt.toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" });
+  const h = dt.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
+  return `${h} - ${f}`;
+}
 
-        fechaSalida.addEventListener('change', function () {
-            if (fechaRegreso) {
-                fechaRegreso.min = fechaSalida.value;
-                if (fechaRegreso.value < fechaSalida.value) {
-                    fechaRegreso.value = fechaSalida.value;
-                }
-            }
-        });
+/* -------- Renderizado vuelos ida -------- */
+function renderVuelosIda(vuelos, template, container) {
+  container.innerHTML = "";
+
+  if (!vuelos.length) {
+    container.innerHTML = `<p class="text-muted text-center">No se encontraron vuelos</p>`;
+    return;
+  }
+
+  vuelos.forEach((vuelo, idx) => {
+    const clone = template.content.cloneNode(true);
+
+    // Generar salida aleatoria
+    const { hora, minuto } = generarHoraAleatoria();
+    const salida = new Date(vuelo.departure_time);
+    salida.setHours(hora, minuto, 0, 0);
+
+    // Calcular llegada
+    const { llegada, duracion } = calcularLlegada(salida, vuelo.layover);
+
+    // Rellenar
+    clone.querySelector(".origen").textContent = vuelo.from;
+    clone.querySelector(".destino").textContent = vuelo.to;
+    clone.querySelector(".salida").textContent = fmtFechaHora(salida);
+    clone.querySelector(".llegada").textContent = fmtFechaHora(llegada);
+    clone.querySelector(".escala").textContent = vuelo.layover ? "Con escala" : "Directo";
+    clone.querySelector(".duracion").textContent = duracion;
+
+    // Precio unitario y total
+    const precioUnit = vuelo.precio ?? vuelo.price;
+    const pasajeros = vuelo.pasajeros || 1;
+    const precioTotal = vuelo.precioTotal ?? precioUnit * pasajeros;
+
+    const precioEl = clone.querySelector(".precio");
+    if (pasajeros > 1) {
+      precioEl.textContent = `USD ${precioTotal} (${precioUnit} x ${pasajeros} pasajeros)`;
+    } else {
+      precioEl.textContent = `USD ${precioTotal}`;
     }
 
-    if (btnIda && btnIdaVuelta && fechaRegreso) {
-        btnIda.addEventListener('click', () => {
-            btnIda.classList.add('active');
-            btnIdaVuelta.classList.remove('active');
-            fechaRegreso.disabled = true;
-            fechaRegreso.value = '';
-        });
-
-        btnIdaVuelta.addEventListener('click', () => {
-            btnIdaVuelta.classList.add('active');
-            btnIda.classList.remove('active');
-            fechaRegreso.disabled = false;
-        });
+    // Etiqueta "Mejor precio" en el más barato
+    if (idx === 0) {
+      const badge = document.createElement("span");
+      badge.textContent = "Mejor precio";
+      badge.classList.add("badge", "bg-success", "ms-2");
+      precioEl.appendChild(badge);
     }
 
-    // Contador pasajeros
-    if (inputPasajeros && btnIncrementar && btnDecrementar) {
-        btnIncrementar.addEventListener('click', () => {
-            inputPasajeros.value = parseInt(inputPasajeros.value) + 1;
-        });
-        btnDecrementar.addEventListener('click', () => {
-            if (parseInt(inputPasajeros.value) > 1) {
-                inputPasajeros.value = parseInt(inputPasajeros.value) - 1;
-            }
-        });
+    // Botón reservar
+    const btnReservar = clone.querySelector(".reservar-btn");
+    btnReservar.addEventListener("click", () => {
+      const usuario = loginController.usuarioActivo();
+      if (!usuario) {
+        Swal.fire({
+          icon: "warning",
+          title: "Inicia sesión",
+          text: "Debes iniciar sesión para reservar."
+        }).then(() => (window.location.href = "login.html"));
+        return;
+      }
+
+      const r = ReservaController.reservarVuelo(
+        {
+          ...vuelo,
+          departure_time: salida.toISOString(),
+          arrival_time: llegada.toISOString()
+        },
+        pasajeros
+      );
+
+      Swal.fire({
+        icon: r.success ? "success" : "error",
+        title: r.message
+      });
+    });
+
+    container.appendChild(clone);
+  });
+}
+
+/* -------- Renderizado vuelos regreso -------- */
+function renderVuelosRegreso(vuelos, template, container) {
+  if (!vuelos.length) return;
+
+  vuelos.forEach(vuelo => {
+    const clone = template.content.cloneNode(true);
+
+    // Generar salida aleatoria
+    const { hora, minuto } = generarHoraAleatoria();
+    const salida = new Date(vuelo.departure_time);
+    salida.setHours(hora, minuto, 0, 0);
+
+    // Calcular llegada
+    const { llegada, duracion } = calcularLlegada(salida, vuelo.layover);
+
+    // Rellenar
+    clone.querySelector(".origen-regreso").textContent = vuelo.from;
+    clone.querySelector(".destino-regreso").textContent = vuelo.to;
+    clone.querySelector(".salida-regreso").textContent = fmtFechaHora(salida);
+    clone.querySelector(".llegada-regreso").textContent = fmtFechaHora(llegada);
+    clone.querySelector(".escala-regreso").textContent = vuelo.layover ? "Con escala" : "Directo";
+    clone.querySelector(".duracion-regreso").textContent = duracion;
+
+    container.appendChild(clone);
+  });
+}
+
+/* -------- Inicialización -------- */
+document.addEventListener("DOMContentLoaded", async () => {
+  const btnBuscar = document.getElementById("buscar-vuelo");
+  const selectOrigen = document.getElementById("origen");
+  const selectDestino = document.getElementById("destino");
+  const fechaSalida = document.getElementById("fecha-salida");
+  const fechaRegreso = document.getElementById("fecha-regreso");
+  const btnIda = document.getElementById("btn-ida");
+  const btnIdaVuelta = document.getElementById("btn-ida-vuelta");
+
+  const containerVuelos = document.getElementById("vuelos-dashboard");
+  const templateVuelo = document.getElementById("template-vuelo");
+  const templateVueloRegreso = document.getElementById("template-vuelo-regreso");
+
+  /* --- Cargar aeropuertos --- */
+  try {
+    let aeropuertos;
+    if (window.location.hostname.includes("github.io")) {
+      const res = await fetch("../API/data/paises_aeropuertos.json");
+      aeropuertos = await res.json();
+    } else {
+      aeropuertos = await BusquedaModel.obtenerAeropuertos();
     }
 
-    // Cargar aeropuertos desde API
-    async function cargarAeropuertos() {
-    try {
-        let aeropuertos = await BusquedaModel.obtenerAeropuertos();
-        // Ordenar alfabéticamente por nombre de país
-        aeropuertos.sort((a, b) => a.country.localeCompare(b.country));
+    aeropuertos
+      .sort((a, b) => a.country.localeCompare(b.country))
+      .forEach(a => {
+        const opt1 = document.createElement("option");
+        opt1.value = a.code;
+        opt1.textContent = `${a.country} (${a.code})`;
+        selectOrigen.appendChild(opt1);
 
-        aeropuertos.forEach((aeropuerto, idx) => {
-            const texto = `${idx + 1}. ${aeropuerto.country} - ${aeropuerto.name} (${aeropuerto.code})`;
+        const opt2 = document.createElement("option");
+        opt2.value = a.code;
+        opt2.textContent = `${a.country} (${a.code})`;
+        selectDestino.appendChild(opt2);
+      });
+  } catch (err) {
+    console.error("Error cargando aeropuertos:", err);
+  }
 
-            const option1 = document.createElement('option');
-            option1.value = aeropuerto.code;
-            option1.textContent = texto;
-            selectOrigen.appendChild(option1);
+  /* --- Activar tipo de viaje --- */
+  btnIda.addEventListener("click", () => {
+    btnIda.classList.add("active");
+    btnIdaVuelta.classList.remove("active");
+    fechaRegreso.disabled = true;
+  });
 
-            const option2 = document.createElement('option');
-            option2.value = aeropuerto.code;
-            option2.textContent = texto;
-            selectDestino.appendChild(option2);
-        });
+  btnIdaVuelta.addEventListener("click", () => {
+    btnIdaVuelta.classList.add("active");
+    btnIda.classList.remove("active");
+    fechaRegreso.disabled = false;
+  });
 
-            // autocompletar si se carga desde destinos
-            const params = new URLSearchParams(window.location.search);
-            const destinoParam = params.get("destino");
+  /* --- Control de pasajeros --- */
+  const inputPasajeros = document.getElementById("pasajeros");
+  const btnMas = document.getElementById("incrementar");
+  const btnMenos = document.getElementById("decrementar");
 
-            if (destinoParam) {
-                const opcionCostaRica = [...selectOrigen.options].find(opt => opt.value === "SJO");
-                if (opcionCostaRica) selectOrigen.value = opcionCostaRica.value;
-                const opcionDestino = [...selectDestino.options].find(opt => opt.value === destinoParam);
-                if (opcionDestino) selectDestino.value = opcionDestino.value;
-            }
-        } catch (error) {
-            Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudieron cargar los aeropuertos.' });
-        }
+  if (!inputPasajeros.value) inputPasajeros.value = 1;
+
+  btnMas.addEventListener("click", () => {
+    let valor = parseInt(inputPasajeros.value) || 1;
+    valor++;
+    inputPasajeros.value = valor;
+  });
+
+  btnMenos.addEventListener("click", () => {
+    let valor = parseInt(inputPasajeros.value) || 1;
+    if (valor > 1) valor--;
+    inputPasajeros.value = valor;
+  });
+
+  /* --- Buscar vuelos --- */
+  btnBuscar.addEventListener("click", async () => {
+    const origen = selectOrigen.value;
+    const destino = selectDestino.value;
+    const pasajeros = document.getElementById("pasajeros").value;
+    const salida = fechaSalida.value;
+    const regreso = fechaRegreso.value;
+    const tipoViaje = btnIdaVuelta.classList.contains("active") ? "ida-vuelta" : "ida";
+
+    if (!origen || !destino || !salida) {
+      Swal.fire({ icon: "warning", title: "Completa los campos requeridos" });
+      return;
     }
-    if (selectOrigen && selectDestino) cargarAeropuertos();
 
-    // Evento buscar
-    if (btnBuscarVuelo) {
-        btnBuscarVuelo.addEventListener('click', async function () {
-            await mostrarVuelos(selectOrigen.value, selectDestino.value);
-        });
+    // Buscar vuelos de ida
+    let vuelosIda = await BusquedaModel.buscarVuelos({
+      origen,
+      destino,
+      pasajeros,
+      fechaSalida: salida
+    });
+
+    // Solo ida → render normal
+    if (tipoViaje === "ida") {
+      renderVuelosIda(vuelosIda, templateVuelo, containerVuelos);
+      return;
     }
 
-    // Mostrar vuelos usando la API
-    async function mostrarVuelos(origen, destino) {
-        dashboard.innerHTML = '';
-
-        if (!origen || !destino) {
-            Swal.fire({ icon: 'warning', title: 'Faltan datos', text: 'Selecciona aeropuerto de origen y destino' });
-            return;
-        }
-
-        try {
-            const cantidadPasajeros = parseInt(inputPasajeros.value) || 1;
-            const tipoViaje = btnIdaVuelta.classList.contains('active') ? 'ida-vuelta' : 'ida';
-            const vuelos = await BusquedaModel.buscarVuelos({
-                origen,
-                destino,
-                pasajeros: cantidadPasajeros,
-                fechaSalida: fechaSalida.value,
-                fechaRegreso: fechaRegreso.value,
-                tipoViaje
-            });
-
-            if (!vuelos.length) {
-                Swal.fire({ icon: 'error', title: 'Sin vuelos', text: 'No hay vuelos disponibles' });
-                return;
-            }
-
-            vuelos.forEach((vuelo, index) => {
-                const escala = vuelo.layover ? 'Con escala' : 'Directo';
-                const duracionMinutos = Math.floor((new Date(vuelo.arrival_time) - new Date(vuelo.departure_time)) / 60000);
-
-                const esIdaVuelta = tipoViaje === 'ida-vuelta' && fechaRegreso && fechaRegreso.value;
-
-                // Clonamos plantilla
-                const card = templateVuelo.content.cloneNode(true);
-
-                // Mostrar etiqueta "Mejor precio" solo en el más barato
-                if (index === 0) {
-                    card.querySelector('.badge-mejor-precio').classList.remove('d-none');
-                }
-
-                card.querySelector('.salida').textContent = `${new Date(vuelo.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(vuelo.departure_time).toLocaleDateString()}`;
-                card.querySelector('.origen').textContent = vuelo.from;
-                card.querySelector('.escala').textContent = escala;
-                card.querySelector('.duracion').textContent = `${duracionMinutos} min`;
-                card.querySelector('.llegada').textContent = `${new Date(vuelo.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(vuelo.arrival_time).toLocaleDateString()}`;
-                card.querySelector('.destino').textContent = vuelo.to;
-                card.querySelector('.precio').textContent = `USD ${vuelo.precioTotal.toFixed(2)}`;
-                if (cantidadPasajeros > 1) {
-                    card.querySelector('.detalle-precio').textContent = `(${vuelo.price.toFixed(2)} x ${cantidadPasajeros})`;
-                }
-
-                // Si es ida y vuelta
-                if (esIdaVuelta && vuelo.regreso) {
-                    const regresoCard = templateRegreso.content.cloneNode(true);
-                    regresoCard.querySelector('.salida-regreso').textContent =
-                        `${new Date(vuelo.regreso.departure_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(vuelo.regreso.departure_time).toLocaleDateString()}`;
-                    regresoCard.querySelector('.origen-regreso').textContent = vuelo.regreso.from;
-                    regresoCard.querySelector('.escala-regreso').textContent = vuelo.regreso.layover ? 'Con escala' : 'Directo';
-                    regresoCard.querySelector('.duracion-regreso').textContent =
-                        `${Math.floor((new Date(vuelo.regreso.arrival_time) - new Date(vuelo.regreso.departure_time)) / 60000)} min`;
-                    regresoCard.querySelector('.llegada-regreso').textContent =
-                        `${new Date(vuelo.regreso.arrival_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(vuelo.regreso.arrival_time).toLocaleDateString()}`;
-                    regresoCard.querySelector('.destino-regreso').textContent = vuelo.regreso.to;
-
-                    card.querySelector('.regreso').appendChild(regresoCard);
-                }
-
-                card.querySelector('.reservar-btn').addEventListener('click', () => {
-                    Swal.fire({ icon: 'success', title: '¡Reserva confirmada!', text: '✈ Viaje reservado con éxito' });
-                });
-
-                dashboard.appendChild(card);
-            });
-        } catch (error) {
-            Swal.fire({ icon: 'error', title: 'Error', text: 'No se pudo cargar la información de vuelos.' });
-        }
+    // Ida y vuelta → buscar regreso
+    let vuelosRegreso = [];
+    if (regreso) {
+      vuelosRegreso = await BusquedaModel.buscarVuelos({
+        origen: destino,
+        destino: origen,
+        pasajeros,
+        fechaSalida: regreso
+      });
     }
+
+    // Limpiar contenedor
+    containerVuelos.innerHTML = "";
+
+    // Combinar ida + regreso
+    for (let i = 0; i < vuelosIda.length; i++) {
+      const vueloIda = vuelosIda[i];
+      const vueloRegreso = vuelosRegreso[i] || null;
+
+      // Bloque principal
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("mb-4", "p-3", "border", "rounded", "shadow-sm");
+
+      // Insertar vuelo de ida
+      renderVuelosIda([vueloIda], templateVuelo, wrapper);
+
+      // Insertar vuelo de regreso (si existe)
+      if (vueloRegreso) {
+        renderVuelosRegreso([vueloRegreso], templateVueloRegreso, wrapper);
+      }
+
+      containerVuelos.appendChild(wrapper);
+    }
+  });
 });
