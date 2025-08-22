@@ -1,19 +1,34 @@
+/*
+ * Descripción: Estilos para la sección de información de contacto y ubicación.
+ */
+
+/* --- Contenedor de información de ubicación --- */
 .info-ubicacion {
+  /* Color de fondo */
   background-color: var(--color-dark2);
+  /* Color del texto */
   color: var(--color-primary);
+  /* Borde izquierdo decorativo */
   border-left: 3px solid var(--color-accent);
 }
 
+/* --- Título dentro del contenedor --- */
 .info-ubicacion h2 {
+  /* Color del título */
   color: var(--color-primary);
+  /* Negrita */
   font-weight: bold;
 }
 
+/* --- Párrafos y elementos de lista --- */
 .info-ubicacion p,
 .info-ubicacion ul li {
+  /* Color del texto para párrafos y elementos de lista */
   color: var(--color-primary);
 }
 
+/* --- Texto en negrita dentro del contenedor --- */
 .info-ubicacion strong {
+  /* Color del texto en negrita */
   color: var(--color-secondary);
 }

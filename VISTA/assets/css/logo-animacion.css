@@ -1,87 +1,163 @@
+/*
+ * Descripción: Estilos y animaciones para el logo de la cabecera.
+ */
+
+/* --- Contenedor del logo --- */
 .logo-container {
+  /* Permite posicionar elementos hijos de forma absoluta */
   position: relative;
+  /* Grosor de la fuente */
   font-weight: bold;
+  /* Tamaño de la fuente */
   font-size: 1.8rem;
+  /* Cambia el cursor a una mano al pasar por encima */
   cursor: pointer;
+  /* Usa flexbox para alinear el contenido */
   display: flex;
+  /* Alinea los elementos verticalmente */
   flex-direction: column;
+  /* Centra horizontalmente los elementos hijos */
   align-items: center;
+  /* Oculta cualquier contenido que se desborde del contenedor */
   overflow: hidden;
 }
 
+/* --- Texto principal del logo ("GOLD") --- */
 .logo-text {
+  /* Se comporta como un bloque */
   display: block;
+  /* Permite posicionar este elemento */
   position: relative;
+  /* Se asegura de que el texto esté por encima de la animación del avión */
   z-index: 1;
+  /* Altura de línea para un mejor espaciado */
   line-height: 1.1;
+  /* Espacio inferior */
   margin-bottom: 0.1em;
+  /* Centra el texto */
   text-align: center;
+  /* Ocupa todo el ancho del contenedor padre */
   width: 100%;
 }
 
+/* --- Subtexto del logo ("Wings") --- */
 .logo-subtext {
+  /* Se comporta como un bloque */
   display: block;
+  /* Tamaño de fuente más pequeño */
   font-size: 1rem;
+  /* Sin negrita */
   font-weight: normal;
+  /* Color del texto */
   color: var(--color-primary);
+  /* Espacio entre las letras */
   letter-spacing: 2px;
+  /* Espacio superior */
   margin-top: 0.1em;
+  /* Se asegura de que el subtexto esté por encima de la animación */
   z-index: 1;
+  /* Centra el texto */
   text-align: center;
+  /* Ocupa todo el ancho del contenedor padre */
   width: 100%;
 }
 
+/* --- Contenedor de la animación del avión --- */
 .plane-anim {
+  /* Posicionamiento absoluto para colocarlo dentro del contenedor del logo */
   position: absolute;
+  /* Se sitúa en la parte izquierda */
   left: 0;
+  /* Centra verticalmente */
   top: 50%;
+  /* Ocupa todo el ancho del contenedor */
   width: 100%;
+  /* No tiene altura */
   height: 0;
+  /* Se superpone al texto del logo */
   z-index: 2;
+  /* Evita que los eventos de clic interactúen con este elemento */
   pointer-events: none;
 }
 
+/* --- Icono del avión --- */
 .plane {
+  /* Color blanco */
   color: #fff;
+  /* Tamaño del icono */
   font-size: 1.2rem;
+  /* Posicionamiento absoluto */
   position: absolute;
+  /* Se sitúa en la parte izquierda */
   left: 0;
+  /* Ajusta la posición vertical */
   top: -0.6rem;
+  /* Inicialmente, es invisible */
   opacity: 0;
+  /* Se superpone a otros elementos de la animación */
   z-index: 2;
+  /* La animación de traslación empieza en 0 */
   transform: translateX(0);
+  /* Evita que los eventos de clic interactúen con este elemento */
   pointer-events: none;
 }
 
+/* --- Rastro del avión --- */
 .plane-trail {
+  /* Se comporta como un bloque */
   display: block;
+  /* Posicionamiento absoluto */
   position: absolute;
+  /* Se sitúa en la parte izquierda */
   left: 0;
+  /* Ajusta la posición vertical */
   top: 0.2rem;
+  /* Ocupa todo el ancho del contenedor */
   width: 100%;
+  /* Grosor del rastro */
   height: 2px;
+  /* Gradiente para crear el efecto de desvanecimiento */
   background: linear-gradient(90deg, #fff 60%, transparent 100%);
+  /* Se sitúa por debajo del icono del avión */
   z-index: 1;
+  /* Inicialmente, es invisible */
   opacity: 0;
+  /* Evita que los eventos de clic interactúen con este elemento */
   pointer-events: none;
 }
 
+/* --- Animaciones al pasar el cursor sobre el logo --- */
+
+/* Cuando el contenedor del logo recibe el hover, se activa la animación del avión */
 .logo-container:hover .plane {
+  /* Se vuelve visible */
   opacity: 1;
+  /* Aplica la animación "flyAcross" por 4 segundos, de forma lineal y mantiene el estado final */
   animation: flyAcross 4.0s linear forwards;
 }
 
+/* Cuando el contenedor del logo recibe el hover, se activa la animación del rastro */
 .logo-container:hover .plane-trail {
+  /* Se vuelve visible */
   opacity: 1;
+  /* Aplica la animación "trailFade" por 1.2 segundos, de forma lineal y mantiene el estado final */
   animation: trailFade 1.2s linear forwards;
 }
 
+/* --- Definición de los fotogramas clave de la animación --- */
+
+/* Animación de traslación del avión */
 @keyframes flyAcross {
+  /* Al inicio (0%), el avión está en su posición inicial y es visible */
   0% { transform: translateX(0); opacity: 1; }
-  100% { transform: translateX(700px); opacity: 0; } 
+  /* Al final (100%), el avión se mueve 700px a la derecha y se desvanece */
+  100% { transform: translateX(700px); opacity: 0; }
 }
 
+/* Animación de desvanecimiento del rastro */
 @keyframes trailFade {
+  /* Al inicio (0%), el rastro no tiene ancho y es visible */
   0% { width: 0; opacity: 1; }
+  /* Al final (100%), el rastro se expande hasta el 100% del ancho y se desvanece */
   100% { width: 100%; opacity: 0; }
 }

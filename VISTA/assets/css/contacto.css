@@ -1,15 +1,29 @@
-/* Estilo para el enlace de política de privacidad */
+/*
+ * Descripción: Estilos específicos para la página de contacto.
+ */
+
+/* --- Estilos para el enlace de política de privacidad --- */
+
 .privacidad-link {
-  color: var(--color-secondary);  /* usa tu color dorado secundario */
+  /* Establece el color del texto a la variable CSS para el color secundario, que es dorado en este caso */
+  color: var(--color-secondary);
+  /* Cambia el cursor a una mano al pasar sobre el enlace, indicando que es clicable */
   cursor: pointer;
+  /* Hace que el texto del enlace sea más visible */
   font-weight: bold;
 }
 
+/* Efecto al pasar el cursor sobre el enlace */
 .privacidad-link:hover {
-  color: var(--color-primary); /* cambia a color principal al pasar el mouse */
+  /* Cambia el color del texto a la variable CSS del color primario */
+  color: var(--color-primary);
+  /* Subraya el texto para un efecto visual al interactuar con el enlace */
   text-decoration: underline;
 }
 
+/* --- Estilos para el texto de ayuda del formulario de contacto --- */
+
 #contactForm .form-text {
+  /* Aplica el color del texto de ayuda dentro del formulario de contacto */
   color: var(--color-primary);
 }
